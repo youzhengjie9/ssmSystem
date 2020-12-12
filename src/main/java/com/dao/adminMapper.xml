@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dao.adminMapper">
+
+    <resultMap id="res" type="com.pojo.admin">
+        <result property="id" column="id"/>
+        <result property="password" column="password"/>
+        <association property="authority" javaType="com.pojo.authority">
+            <result property="authoid" column="authoid"/>
+            <result property="authoName" column="authoName"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllAdmin" resultMap="res">
+        select id,password,authority.authoid,authority.authoName from admin,authority
+        where admin.authoid = authority.authoid
+    </select>
+    
+    <select id="queryOneAdmin" resultMap="res">
+        select id,password,authority.authoid,authority.authoName from admin,authority where id=#{id}
+        and admin.authoid = authority.authoid
+    </select>
+
+    <update id="changeAdmin" parameterType="com.pojo.authority">
+            update admin set authoid =#{authority.authoid} ,password=#{password} where id=#{id};
+    </update>
+
+    <insert id="addAdmin" parameterType="com.pojo.admin">
+        insert into admin(id,password,authoid) values (#{id},#{password},#{authority.authoid})
+    </insert>
+
+    <delete id="delAdmin" parameterType="java.lang.String">
+        delete from admin where id=#{id}
+    </delete>
+
+</mapper>

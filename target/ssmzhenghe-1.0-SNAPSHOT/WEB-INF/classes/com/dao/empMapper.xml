@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dao.empMapper">
+
+    <resultMap id="res" type="com.pojo.emp">
+        <result property="empid" column="empid"/>
+        <result property="empName" column="empName"/>
+        <association property="dept" javaType="com.pojo.dept">
+            <result property="deptid" column="deptid"/>
+            <result property="deptName" column="deptName"/>
+        </association>
+    </resultMap>
+
+
+    <select id="queryAllEmp" resultMap="res">
+       select empid,empName,dept.deptid,dept.deptName from emp,dept;
+    </select>
+
+    <insert id="addEmp" parameterType="com.pojo.emp">
+        insert into emp (empid,empName,deptid) values (#{empid},#{empName},#{dept.deptid});
+    </insert>
+
+
+    <delete id="delEmp" parameterType="java.lang.String">
+        delete from emp where empid=#{empid}
+    </delete>
+
+
+    <update id="changeEmp" parameterType="com.pojo.emp">
+        update emp set empName = #{empName} , deptid=#{deptid} where empid=#{empid};
+    </update>
+
+</mapper>
