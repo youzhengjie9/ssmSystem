@@ -14,7 +14,7 @@
 <h3>changeDept</h3>
     <form method="post" action="${pageContext.request.contextPath}/changeDept">
         <input type="hidden" name="deptid" value="${deptid}"><br/>
-        部门编号：<input type="text" name="deptName" value="${deptName}" required><br/>
+        部门名称：<input type="text" name="deptName" value="${deptName}" required><br/>
         <input type="submit" value="修改">
     </form>
 
