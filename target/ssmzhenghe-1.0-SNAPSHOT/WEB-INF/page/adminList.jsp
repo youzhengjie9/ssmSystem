@@ -12,29 +12,29 @@
 <head>
     <title>adminList</title>
 </head>
-<%--<script>--%>
-<%--    function x() {--%>
-<%--        alert("关闭浏览器")--%>
-<%--    }--%>
-<%--</script>--%>
+<script>
+    function x() {
+        alert("关闭浏览器")
+    }
+</script>
 
-<%--<script>--%>
+<script>
 
-<%--    document.getElementById('del').onclick=function () {--%>
+    document.getElementById('del').onclick=function () {
 
-<%--        let b = confirm("您是否确定删除该管理员？");--%>
-<%--        if(b==true){--%>
-<%--            alert("删除成功！")--%>
-<%--        }else {--%>
-<%--            document.getElementById('del').href=${pageContext.request.contextPath}/adminList--%>
-<%--            alert("删除失败")--%>
-<%--        }--%>
+        let b = confirm("您是否确定删除该管理员？");
+        if(b==true){
+            alert("删除成功！")
+        }else {
+            document.getElementById('del').href=${pageContext.request.contextPath}/adminList
+            alert("删除失败")
+        }
 
-<%--    }--%>
+    }
 
 
-<%--</script>--%>
-<body >
+</script>
+<body onbeforeunload="x()">
 <h3>管理员列表&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toList">返回主界面</a></h3>
 <br/>
 <h4><a href="${pageContext.request.contextPath}/toAddAdmin">新增管理员</a> </h4>
