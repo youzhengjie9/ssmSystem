@@ -28,9 +28,9 @@
             <td>${emp.empid}</td>
             <td>${emp.empName}</td>
             <td>${emp.dept.deptName}</td>
-            <td><a href="${pageContext.request.contextPath}">修改</a>
+            <td><a href="${pageContext.request.contextPath}/tochangeEmp/${emp.empid}">修改</a>
                 &nbsp;&nbsp;|
-                <a href="${pageContext.request.contextPath}" id="del">删除</a>
+                <a href="${pageContext.request.contextPath}/delEmp/${emp.empid}" id="del">删除</a>
             </td>
         </tr>
 
