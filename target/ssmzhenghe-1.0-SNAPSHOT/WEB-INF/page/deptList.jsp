@@ -14,15 +14,22 @@
 <body>
 <h3>部门信息&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toList">返回主界面</a></h3>
 <br/>
+<h4><a href="${pageContext.request.contextPath}/toAddDept">新增部门</a> </h4>
+<br/>
 <table border="1">
     <tr>
         <td>部门id</td>
         <td>部门名称</td>
+        <td>操作</td>
     </tr>
     <c:forEach items="${depts}" var="dept">
         <tr>
             <td>${dept.deptid}</td>
             <td>${dept.deptName}</td>
+            <td><a href="${pageContext.request.contextPath}/tochangeDept/${dept.deptid}/${dept.deptName}">修改</a>
+                &nbsp;&nbsp;|
+                <a href="${pageContext.request.contextPath}/delDept/${dept.deptid}" id="del">删除</a>
+            </td>
         </tr>
     </c:forEach>
 </table>

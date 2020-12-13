@@ -52,8 +52,8 @@
                 /toAddDept =roles[admin]
                 /addDept =roles[admin]
                 /delDept/* =roles[admin]
-
-
+                /toAddEmp =roles[admin]
+                /AddEmp =roles[admin]
 
 
                 /** =authc

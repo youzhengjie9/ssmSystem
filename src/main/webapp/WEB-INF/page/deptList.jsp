@@ -20,6 +20,7 @@
     <tr>
         <td>部门id</td>
         <td>部门名称</td>
+        <td>操作</td>
     </tr>
     <c:forEach items="${depts}" var="dept">
         <tr>

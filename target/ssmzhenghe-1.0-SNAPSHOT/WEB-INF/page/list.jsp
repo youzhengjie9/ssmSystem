@@ -15,7 +15,7 @@
 
 <h3><a href="${pageContext.request.contextPath}/showDept">部门信息</a> </h3><br/>
 
-<h3><a href="#">员工信息</a> </h3><br/>
+<h3><a href="${pageContext.request.contextPath}/toEmpList">员工信息</a> </h3><br/>
 
 <h3><a href="#">查看日志</a> </h3><br/>
 

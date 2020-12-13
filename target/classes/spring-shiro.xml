@@ -46,6 +46,15 @@
                 /TochanggeAdmin/* =roles[admin]
                 /toAddAdmin =roles[admin]
                 /AddAdmin =roles[admin]
+                /delAdmin/* =roles[admin]
+                /tochangeDept/** =roles[admin]
+                /changeDept =roles[admin]
+                /toAddDept =roles[admin]
+                /addDept =roles[admin]
+                /delDept/* =roles[admin]
+                /toAddEmp =roles[admin]
+                /AddEmp =roles[admin]
+
 
                 /** =authc
             </value>
