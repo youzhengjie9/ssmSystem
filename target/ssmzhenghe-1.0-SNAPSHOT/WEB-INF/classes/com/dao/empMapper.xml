@@ -17,7 +17,8 @@
 
 
     <select id="queryAllEmp" resultMap="res">
-       select empid,empName,dept.deptid,dept.deptName from emp,dept;
+--      多表查询别忘了等值连接
+       select empid,empName,emp.deptid,dept.deptName from emp,dept where dept.deptid=emp.deptid;
     </select>
 
     <insert id="addEmp" parameterType="com.pojo.emp">
@@ -31,7 +32,7 @@
 
 
     <update id="changeEmp" parameterType="com.pojo.emp">
-        update emp set empName = #{empName} , deptid=#{deptid} where empid=#{empid};
+        update emp set empName = #{empName}, deptid= #{dept.deptid} where empid=#{empid};
     </update>
 
 </mapper>

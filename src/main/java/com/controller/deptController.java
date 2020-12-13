@@ -3,12 +3,14 @@ package com.controller;
 import com.pojo.dept;
 import com.service.deptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -38,7 +40,7 @@ public class deptController {
 
 
     @RequestMapping(path = "/changeDept")
-    public String changeDept(dept dept){
+    public String changeDept(HttpServletRequest request, @Value("") String type, dept dept){
         deptService.changeDept(dept);
         return "redirect:/showDept";
     }
@@ -50,13 +52,13 @@ public class deptController {
     }
 
     @RequestMapping(path = "/addDept")
-    public String addDept(dept dept){
+    public String addDept(HttpServletRequest request, @Value("") String type,dept dept){
         deptService.addDept(dept);
         return "redirect:/showDept";
     }
 
     @RequestMapping(path = "/delDept/{deptid}")
-    public String delDept(@PathVariable("deptid") String deptid){
+    public String delDept(HttpServletRequest request, @Value("") String type,@PathVariable("deptid") String deptid){
         deptService.delDept(deptid);
         return "redirect:/showDept";
     }

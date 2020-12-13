@@ -3,12 +3,16 @@ package com.controller;
 import com.pojo.emp;
 import com.service.deptService;
 import com.service.empService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -28,8 +32,13 @@ public class empController {
     }
 
     @RequestMapping(path = "/toEmpList")
-    public String toEmpList(Model model){
+    public String toEmpList(HttpServletRequest request, @Value("") String type, Model model){
         model.addAttribute("emps",empService.queryAllEmp());
+//
+//        Subject subject = SecurityUtils.getSubject();
+//        System.out.println(subject.getPrincipal());
+
+//        System.out.println(request.getServletPath());
 
         return "empList";
     }
@@ -40,7 +49,7 @@ public class empController {
     }
 
     @RequestMapping(path = "/AddEmp")
-    public String AddEmp(emp emp){
+    public String AddEmp(HttpServletRequest request, @Value("") String type,emp emp){
         empService.addEmp(emp);
         return "redirect:/toEmpList";
     }
@@ -60,13 +69,13 @@ public class empController {
     }
 
     @RequestMapping(path = "/changeEmp")
-    public String changeEmp(emp emp){
+    public String changeEmp(HttpServletRequest request, @Value("") String type,emp emp){
         empService.changeEmp(emp);
         return "redirect:/toEmpList";
     }
 
     @RequestMapping(path = "/delEmp/{empid}")
-    public String delEmp(@PathVariable("empid") String empid){
+    public String delEmp(HttpServletRequest request, @Value("") String type,@PathVariable("empid") String empid){
        empService.delEmp(empid);
         return "redirect:/toEmpList";
     }

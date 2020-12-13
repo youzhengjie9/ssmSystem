@@ -54,6 +54,10 @@
                 /delDept/* =roles[admin]
                 /toAddEmp =roles[admin]
                 /AddEmp =roles[admin]
+                /tochangeEmp/* =roles[admin]
+                /changeEmp =roles[admin]
+                /delEmp/* =roles[admin]
+
 
 
                 /** =authc
