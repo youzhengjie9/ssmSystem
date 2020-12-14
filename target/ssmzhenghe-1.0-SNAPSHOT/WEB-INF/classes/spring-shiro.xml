@@ -57,8 +57,9 @@
                 /tochangeEmp/* =roles[admin]
                 /changeEmp =roles[admin]
                 /delEmp/* =roles[admin]
-
-
+                /toLogList =roles[admin]
+                /TochangeRemark =roles[admin]
+                /changeRemark =roles[admin]
 
                 /** =authc
             </value>

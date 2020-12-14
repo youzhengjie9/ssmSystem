@@ -17,7 +17,7 @@
 
 <h3><a href="${pageContext.request.contextPath}/toEmpList">员工信息</a> </h3><br/>
 
-<h3><a href="#">查看日志</a> </h3><br/>
+<h3><a href="${pageContext.request.contextPath}/toLogList">查看日志</a> </h3><br/>
 
 
 <h3><a href="${pageContext.request.contextPath}/logout">退出</a> </h3>

@@ -5,6 +5,8 @@ import com.pojo.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class logServiceImpl implements logService {
 
@@ -19,5 +21,15 @@ public class logServiceImpl implements logService {
     public void addLog(logger logger) {
 
         logMapper.addLog(logger);
+    }
+
+    @Override
+    public List<logger> showLog() {
+        return logMapper.showLog();
+    }
+
+    @Override
+    public void changeRemark(String logid, String remark) {
+        logMapper.changeRemark(logid,remark);
     }
 }

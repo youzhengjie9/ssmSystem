@@ -8,9 +8,14 @@
     <insert id="addLog" parameterType="com.pojo.logger">
         insert into logger values (#{logid},#{id},#{type},#{operation},#{date},#{remark});
     </insert>
+    
+    <select id="showLog" resultType="com.pojo.logger">
+        select * from logger;
+    </select>
 
-
-
+    <update id="changeRemark">
+        update logger set remark = #{remark} where logid =#{logid};
+    </update>
 
 
 </mapper>
