@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <%--<%@ taglib prefix="sh" uri="http://shiro.apache.org/tags" %>--%>
 <html>
 <head>
@@ -39,7 +41,7 @@
 <br/>
 <h4><a href="${pageContext.request.contextPath}/toAddAdmin">新增管理员</a> </h4>
 <br/>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <td>管理员id</td>
         <td>管理员权限等级</td>
