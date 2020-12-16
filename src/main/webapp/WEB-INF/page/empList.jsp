@@ -97,13 +97,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <%--                <li><a href="#">查看日志</a></li>--%>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -378,8 +374,46 @@
 <%--<br/>--%>
 <div id="tb">
 
-    <h4><a href="${pageContext.request.contextPath}/toAddEmp">新增员工</a> </h4>
-    <br/>
+<%--    <h4><a href="${pageContext.request.contextPath}/toAddEmp">新增员工</a> </h4>--%>
+<%--    <br/>--%>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">新增员工</h4>
+                </div>
+                <form method="post" action="${pageContext.request.contextPath}/AddEmp">
+                    <div class="modal-body">
+                        员工编号：<input type="text" name="empid"><br/>
+                        员工名字: &nbsp;<input type="text" name="empName"><br/>
+                        所在部门：<select name="dept.deptid">
+                        <c:forEach items="${depts}" var="dept">
+                            <option value="${dept.deptid}">${dept.deptName}</option>
+                        </c:forEach>
+
+                    </select>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">确认添加</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+    <!-- 按钮触发模态框 -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新增员工</button>
+
+
     <table  class="table table-hover">
         <tr>
             <td>员工编号</td>
@@ -392,9 +426,11 @@
                 <td>${emp.empid}</td>
                 <td>${emp.empName}</td>
                 <td>${emp.dept.deptName}</td>
-                <td><a href="${pageContext.request.contextPath}/tochangeEmp/${emp.empid}">修改</a>
+                <td><button data-toggle="modal" data-target="#myModal2" value="${emp.empName}" onclick="changeEmp(this,${emp.empid})">修改</button>
                     &nbsp;&nbsp;|
-                    <a href="${pageContext.request.contextPath}/delEmp/${emp.empid}" id="del">删除</a>
+<%--                    <a href="${pageContext.request.contextPath}/delEmp/${emp.empid}" id="del">删除</a>--%>
+                    <a href="#" onclick="isdelEmp(this,${emp.empid})">删除</a>
+
                 </td>
             </tr>
 
@@ -408,10 +444,56 @@
 </div>
 
 
+<!-- 修改emp模态框 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">修改部门信息</h4>
+            </div>
+            <form method="post" action="${pageContext.request.contextPath}/changeEmp">
+                <div class="modal-body">
+                    <input type="hidden" name="empid" id="ep" value=""><br/>
+                    员工名字：<input type="text" name="empName" id="en" value="" required><br/>
+                    部门名称：<select name="dept.deptid">
+                    <c:forEach items="${depts}" var="dept">
+                        <option value="${dept.deptid}">${dept.deptName}</option>
+                    </c:forEach>
+
+                </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">修改</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<script>
+    
+    function changeEmp(emp,empid) {
+
+        document.getElementById('ep').value = empid;
+        document.getElementById('en').value = emp.value;
+    }
+    
+    function isdelEmp(emp,empid) {
+       var isdel = confirm("你是否要删除编号为："+empid+"的员工？");
+       if(isdel==true){
+           emp.href="${pageContext.request.contextPath}/delEmp/"+empid;
+           alert("成功删除编号为："+empid+"的员工")
+       }
+
+    }
 
 
 
 
+</script>
 
 
 </body>

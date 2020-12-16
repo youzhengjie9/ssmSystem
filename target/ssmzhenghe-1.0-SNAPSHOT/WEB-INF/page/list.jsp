@@ -54,6 +54,7 @@
 
 
 
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -94,15 +95,14 @@
             <%--                <button type="submit" class="btn btn-default">Submit</button>--%>
             <%--            </form>--%>
             <ul class="nav navbar-nav navbar-right">
-                <%--                <li><a href="#">查看日志</a></li>--%>
+
+
+
+                                <li><img src="${pageContext.request.contextPath}/imgServlet"></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
             </ul>

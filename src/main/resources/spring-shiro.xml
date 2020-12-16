@@ -43,24 +43,16 @@
                 / =anon
                 /logout =logout
                 /changgeAdmin =roles[admin]
-                /TochanggeAdmin/* =roles[admin]
-                /toAddAdmin =roles[admin]
                 /AddAdmin =roles[admin]
                 /delAdmin/* =roles[admin]
-                /tochangeDept/** =roles[admin]
                 /changeDept =roles[admin]
-                /toAddDept =roles[admin]
                 /addDept =roles[admin]
                 /delDept/* =roles[admin]
-                /toAddEmp =roles[admin]
                 /AddEmp =roles[admin]
-                /tochangeEmp/* =roles[admin]
                 /changeEmp =roles[admin]
                 /delEmp/* =roles[admin]
                 /toLogList =roles[admin]
-                /TochangeRemark =roles[admin]
                 /changeRemark =roles[admin]
-
                 /** =authc
             </value>
 

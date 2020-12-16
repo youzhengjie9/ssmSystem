@@ -1,6 +1,8 @@
 package com.controller;
 
 import com.service.logService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +21,11 @@ public class logController {
     @RequestMapping(path = "/toLogList")
     public String toLogList(Model model){
         model.addAttribute("logs",logService.showLog());
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
         return "logList";
     }
-    @RequestMapping(path = "/TochangeRemark")
-    public String TochangeRemark( String logid, String remark,Model model){
-        model.addAttribute("logid",logid);
-        model.addAttribute("remark",remark);
-        System.out.println(logid+","+remark);
-        return "changeRemark";
-    }
+
 
     @RequestMapping(path = "/changeRemark")
     public String changeRemark(String logid,String remark){

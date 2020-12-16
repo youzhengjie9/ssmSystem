@@ -48,9 +48,27 @@
 <!--    这是个坑。。。。。。。。。-->
     <load-on-startup>1</load-on-startup>
   </servlet>
+
+  <servlet>
+    <servlet-name>imgServlet</servlet-name>
+    <servlet-class>com.img.imgServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>imgServlet</servlet-name>
+    <url-pattern>/imgServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
+
+
+
+
+
+
+
+
 </web-app>

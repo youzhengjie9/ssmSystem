@@ -102,13 +102,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <%--                <li><a href="#">查看日志</a></li>--%>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -392,7 +388,7 @@
 
 
                     部门编号：<input type="text" name="deptid"><br/>
-                    部门名称:&nbsp;<input type="text" name="deptName"><br/>
+                    部门名称:&nbsp;&nbsp;<input type="text" name="deptName"><br/>
 
             </div>
             <div class="modal-footer">
@@ -403,6 +399,12 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
+
+
+
+
+
 
 
 <div id="tb">
@@ -419,15 +421,65 @@
         <tr>
             <td>${dept.deptid}</td>
             <td>${dept.deptName}</td>
-            <td><a href="${pageContext.request.contextPath}/tochangeDept/${dept.deptid}/${dept.deptName}">修改</a>
+            <td><button data-toggle="modal" data-target="#myModal2"  value="${dept.deptid}" onclick="getid(this)">修改</button>
                 &nbsp;&nbsp;|
-                <a href="${pageContext.request.contextPath}/delDept/${dept.deptid}" id="del">删除</a>
+<%--                <a href="${pageContext.request.contextPath}/delDept/${dept.deptid}" id="del">删除</a>--%>
+                <a href="#" onclick="isdel(this,${dept.deptid})">删除</a>
+
+
             </td>
         </tr>
     </c:forEach>
 </table>
 </div>
 
+<!-- 修改dept模态框 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">修改部门信息</h4>
+            </div>
+            <form method="post" action="${pageContext.request.contextPath}/changeDept">
+                <div class="modal-body">
+                    <input type="hidden" name="deptid" id="cid" value=""><br/>
+                    请输入新的部门名称：<input type="text" id="cname" name="deptName"  required><br/>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">修改</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+
+    /**
+     **************难点
+     * 通过组件的onclick方法传来this对象，再通过这个对象去获得值
+     * @param data
+     */
+    function getid(data) {
+        document.getElementById('cid').value=data.value;
+    }
+
+    function isdel(delData,deptid) {
+        var del=confirm("您确定删除部门id为："+deptid+"的部门吗？");
+        if(del==true){
+            delData.href="${pageContext.request.contextPath}/delDept/"+deptid;
+            alert("成功删除部门id为"+deptid+"的部门");
+        }
+
+    }
+
+
+
+
+</script>
 
 
 

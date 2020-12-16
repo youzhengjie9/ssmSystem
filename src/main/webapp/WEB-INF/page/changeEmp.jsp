@@ -16,7 +16,7 @@
 <form method="post" action="${pageContext.request.contextPath}/changeEmp">
     <input type="hidden" name="empid" value="${empid}"><br/>
     员工名字：<input type="text" name="empName" value="${empName}" required><br/>
-    部门名称：<select name="dept.deptid">
+    部门名称：&nbsp;<select name="dept.deptid">
             <c:forEach items="${depts}" var="dept">
                 <option value="${dept.deptid}">${dept.deptName}</option>
             </c:forEach>

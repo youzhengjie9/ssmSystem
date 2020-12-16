@@ -99,13 +99,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <%--                <li><a href="#">查看日志</a></li>--%>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -396,7 +392,9 @@
                 <td>${log.operation}</td>
                 <td>${log.date}</td>
                 <td>${log.remark}</td>
-                <td><a href="${pageContext.request.contextPath}/TochangeRemark?logid=${log.logid}&remark=${log.remark}">添加/修改备注</a></td>
+<%--                <td><a href="${pageContext.request.contextPath}/TochangeRemark?logid=${log.logid}&remark=${log.remark}">添加/修改备注</a></td>--%>
+                <!-- 按钮触发模态框 -->
+               <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" value="${log.logid}" onclick="addRemark(this)">添加/修改备注</button></td>
 
 
             </tr>
@@ -406,6 +404,53 @@
     </table>
 </div>
 
+
+
+<!-- 日志备注模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">添加/修改备注</h4>
+            </div>
+            <form method="post" action="${pageContext.request.contextPath}/changeRemark">
+                <div class="modal-body">
+                    <input type="hidden" name="logid" id="logid" value="">
+                   新备注： <input type="text" name="remark" id="remark" value="">
+                    <br/>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">确认备注</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<script>
+    function addRemark(ele) {
+        alert(ele.value);
+        document.getElementById('logid').value=ele.value;
+        /**
+         * 有bug 。。如果备注是英文时无法传值，连function也进不来
+         */
+
+        // alert(remark);
+        // if(typeof ele.value == "undefined"){
+        //     document.getElementById('remark').value="";
+        // }else{
+        //     document.getElementById('remark').value=remark+"";
+        // }
+
+
+    }
+
+
+</script>
 
 
 

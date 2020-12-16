@@ -55,14 +55,11 @@ public class deptController {
         modelAndView.setViewName("deptList");
         List<dept> depts = deptService.queryAllDept();
         modelAndView.addObject("depts",depts);
+        Subject subject = SecurityUtils.getSubject();
+        modelAndView.addObject("user",subject.getPrincipal());
         return modelAndView;
     }
-    @RequestMapping(path = "/tochangeDept/{deptid}/{deptName}")
-    public String tochangeDept(@PathVariable("deptid") String deptid,@PathVariable("deptName") String deptName, Model model){
-        model.addAttribute("deptid",deptid);
-        model.addAttribute("deptName",deptName);
-        return "changeDept";
-    }
+
 
 
     @RequestMapping(path = "/changeDept")
@@ -74,10 +71,7 @@ public class deptController {
     }
 
 
-    @RequestMapping(path = "/toAddDept")
-    public String toAddDept(){
-        return "addDept";
-    }
+
 
     @RequestMapping(path = "/addDept")
     public String addDept(HttpServletRequest request, @Value("添加部门") String type,dept dept){

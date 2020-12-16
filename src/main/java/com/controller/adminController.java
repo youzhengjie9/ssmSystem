@@ -51,7 +51,9 @@ public class adminController {
     }
 
     @RequestMapping(path = "/toList")
-    public String toList(){
+    public String toList(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
         return "list";
     }
 
@@ -70,6 +72,8 @@ public class adminController {
     public String adminList( Model model){
         model.addAttribute("admin",adminService.queryAllAdmin());
         model.addAttribute("authorities",authorityService.queryAllAutho());
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
         return "adminList";
     }
 
@@ -98,17 +102,7 @@ public class adminController {
 
         return "redirect:/adminList";
     }
-    @RequestMapping(path = "/TochanggeAdmin/{id}")
-    public String TochanggeAdmin(@PathVariable("id") String id, Model model){
-        model.addAttribute("id",id);
-        model.addAttribute("authorities",authorityService.queryAllAutho());
-        return "changgeAdminList";
-    }
-    @RequestMapping(path = "/toAddAdmin")
-    public String toAddAdmin(Model model){
-        model.addAttribute("authorities",authorityService.queryAllAutho());
-        return "addAdmin";
-    }
+
 
     @RequestMapping(path = "/AddAdmin")
     public String AddAdmin(HttpServletRequest request, @Value("添加管理员") String type,admin admin){
@@ -133,7 +127,7 @@ public class adminController {
 
 
     @RequestMapping(path = "/checkLogin")
-    public String checkLogin(String id,String password){
+    public String checkLogin(String id,String password,HttpServletRequest request,Model model){
         System.out.println("checkLogin");
         Subject currentSubject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(id,password);
@@ -141,6 +135,16 @@ public class adminController {
             try{
 
                 currentSubject.login(usernamePasswordToken);
+                Subject subject = SecurityUtils.getSubject();
+                model.addAttribute("user",subject.getPrincipal());
+
+//                //测试文件位置
+//                System.out.println(request.getSession().getServletContext().getRealPath("img"));
+//                String path = request.getSession().getServletContext().getRealPath("img");
+//                String imgpath=path+"\\img-"+subject.getPrincipal()+".png";
+//                model.addAttribute("imgpath",imgpath);
+//                System.out.println(imgpath);
+
                 return "list";
             }catch (Exception e){
                 System.out.println(e.getMessage());

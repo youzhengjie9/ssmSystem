@@ -44,12 +44,9 @@ public class empController {
     @RequestMapping(path = "/toEmpList")
     public String toEmpList(HttpServletRequest request, @Value("") String type, Model model){
         model.addAttribute("emps",empService.queryAllEmp());
-//
-//        Subject subject = SecurityUtils.getSubject();
-//        System.out.println(subject.getPrincipal());
-
-//        System.out.println(request.getServletPath());
-
+        model.addAttribute("depts",deptService.queryAllDept());
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
         return "empList";
     }
 
@@ -66,11 +63,7 @@ public class empController {
         logMapper.addLog(new logger(logid,id,type,operation,dateTime,""));
     }
 
-    @RequestMapping(path = "/toAddEmp")
-    public String toAddEmp(Model model){
-        model.addAttribute("depts",deptService.queryAllDept());
-        return "addEmp";
-    }
+
 
     @RequestMapping(path = "/AddEmp")
     public String AddEmp(HttpServletRequest request, @Value("添加员工") String type,emp emp){
@@ -81,19 +74,7 @@ public class empController {
         return "redirect:/toEmpList";
     }
 
-    @RequestMapping(path = "/tochangeEmp/{empid}")
-    public String tochangeEmp(@PathVariable("empid") String empid, Model model){
-        model.addAttribute("empid",empid);
-        List<emp> emps = empService.queryAllEmp();
-        for (emp emp : emps) {
-            if(emp.getEmpid()==Integer.parseInt(empid)){
-                model.addAttribute("empName",emp.getEmpName());
-                break;
-            }
-        }
-        model.addAttribute("depts",deptService.queryAllDept());
-        return "changeEmp";
-    }
+
 
     @RequestMapping(path = "/changeEmp")
     public String changeEmp(HttpServletRequest request, @Value("修改员工信息") String type,emp emp){

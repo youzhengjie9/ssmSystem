@@ -123,13 +123,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <%--                <li><a href="#">查看日志</a></li>--%>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">退出 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -456,9 +452,10 @@
                 <td>${admin.id}</td>
                 <td>${admin.authority.authoid}</td>
                 <td>${admin.authority.authoName}</td>
-                <td><a data-toggle="modal" data-target="#myModal2">修改</a>
+                <td><button data-toggle="modal" data-target="#myModal2"  onclick="change(${admin.id})">修改</button>
                     &nbsp;&nbsp;|
-                    <a href="${pageContext.request.contextPath}/delAdmin/${admin.id}" id="del">删除</a>
+<%--                    <a href="${pageContext.request.contextPath}/delAdmin/${admin.id}" id="del">删除</a>--%>
+                    <a href="#" onclick="isdel(this,${admin.id})">删除</a>
                 </td>
             </tr>
         </c:forEach>
@@ -479,7 +476,7 @@
             <form method="post" action="${pageContext.request.contextPath}/changgeAdmin">
                 <div class="modal-body">
 
-                    帐号：<input type="text" name="id" value="${id}"><br/>
+                   <input type="hidden" name="id" id="number"><br/>
                     密码：<input type="password" name="password"><br/>
                     权限：<select name="authority.authoid">
                     <c:forEach items="${authorities}" var="authority">
@@ -497,6 +494,34 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
+
+
+，<script type="text/javascript">
+
+
+
+    function change(data) {
+
+        document.getElementById('number').value=data;
+    }
+
+    function isdel(et,id) {
+        var isdel= confirm("您确定删除管理员："+id+"吗？");
+        if(isdel==true){
+            et.href="${pageContext.request.contextPath}/delAdmin/"+id;
+            alert("成功删除管理员:"+id);
+        }
+    }
+
+
+
+
+  </script>
+
+
+
+
 
 
 </body>
