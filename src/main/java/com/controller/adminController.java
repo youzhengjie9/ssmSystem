@@ -65,9 +65,11 @@ public class adminController {
     public String logout(){
         return "login";
     }
+
     @RequestMapping(path = "/adminList")
     public String adminList( Model model){
         model.addAttribute("admin",adminService.queryAllAdmin());
+        model.addAttribute("authorities",authorityService.queryAllAutho());
         return "adminList";
     }
 
