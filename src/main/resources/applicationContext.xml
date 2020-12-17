@@ -8,4 +8,10 @@
     <import resource="classpath:spring-service.xml"/>
     <import resource="classpath:spring-mvc.xml"/>
 
+<!--    注册文件上传组件-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    </bean>
+
+
 </beans>

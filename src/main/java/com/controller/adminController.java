@@ -127,13 +127,19 @@ public class adminController {
 
 
     @RequestMapping(path = "/checkLogin")
-    public String checkLogin(String id,String password,HttpServletRequest request,Model model){
-        System.out.println("checkLogin");
+    public String checkLogin(String id,String password,String isRemember,HttpServletRequest request,Model model){
+//        System.out.println("checkLogin");
+
         Subject currentSubject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(id,password);
         if(!currentSubject.isAuthenticated()){
             try{
-
+                //记住我功能
+                if(isRemember!=null&& isRemember.equals("remember-me")){
+                     usernamePasswordToken.setRememberMe(true);
+                }else{
+                    usernamePasswordToken.setRememberMe(false);
+                }
                 currentSubject.login(usernamePasswordToken);
                 Subject subject = SecurityUtils.getSubject();
                 model.addAttribute("user",subject.getPrincipal());
