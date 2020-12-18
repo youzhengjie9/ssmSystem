@@ -17,4 +17,6 @@ public interface adminService {
     void addAdmin(admin admin);
 
     void delAdmin(String id);
+
+
 }

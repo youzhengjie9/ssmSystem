@@ -6,6 +6,7 @@ import com.pojo.logger;
 import com.service.adminService;
 import com.service.authorityService;
 import com.service.deptService;
+import com.service.empService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -29,6 +30,12 @@ public class adminController {
     private adminService adminService;
     private authorityService authorityService;
     private logMapper logMapper;
+    private empService empService;
+
+    @Autowired
+    public void setEmpService(com.service.empService empService) {
+        this.empService = empService;
+    }
 
     @Autowired
     public void setLogMapper(com.dao.logMapper logMapper) {
@@ -112,9 +119,16 @@ public class adminController {
         return "redirect:/adminList";
     }
 
+
+
     @RequestMapping(path = "/delAdmin/{id}")
-    public String delAdmin(HttpServletRequest request, @Value("删除管理员") String type,@PathVariable("id") String id){
+    public String delAdmin(HttpServletRequest request, @Value("删除帐号、员工信息") String type,@PathVariable("id") String id){
+//        admin admin = adminService.queryOneAdmin(id);
          adminService.delAdmin(id);
+//        empService.delEmp(admin.getId());  //这个是根据编号删除，我们要根据帐号删除
+
+        empService.delEmpByAdminID(id);
+
         //日志
         addlog(request,type);
         return "redirect:/adminList";

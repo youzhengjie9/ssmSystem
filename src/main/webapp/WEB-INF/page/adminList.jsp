@@ -76,7 +76,10 @@
         position: absolute;
         /*background-color: #00F7DE;*/
     }
+    #touxiang{
+        border-radius: 50%;
 
+    }
 
 
 </style>
@@ -121,11 +124,11 @@
             <%--                <button type="submit" class="btn btn-default">Submit</button>--%>
             <%--            </form>--%>
             <ul class="nav navbar-nav navbar-right">
-                <li><img src="${pageContext.request.contextPath}/imgServlet"></li>
+                <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><button data-toggle="modal" data-target="#myModal3" >个人中心</button></li>
+                        <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
                         <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
@@ -274,10 +277,10 @@
                 <td>${admin.id}</td>
                 <td>${admin.authority.authoid}</td>
                 <td>${admin.authority.authoName}</td>
-                <td><button data-toggle="modal" data-target="#myModal2"  onclick="change(${admin.id})">修改</button>
-                    &nbsp;&nbsp;|
+                <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2"  onclick="change(${admin.id})">修改</button>
+                    &nbsp;&nbsp;
 <%--                    <a href="${pageContext.request.contextPath}/delAdmin/${admin.id}" id="del">删除</a>--%>
-                    <a href="#" onclick="isdel(this,${admin.id})">删除</a>
+                    <a href="#" class="btn btn-danger btn-sm" onclick="isdel(this,${admin.id})">删除</a>
                 </td>
             </tr>
         </c:forEach>

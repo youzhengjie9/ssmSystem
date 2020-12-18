@@ -36,4 +36,14 @@ public class empServiceImpl implements empService {
     public void changeEmp(emp emp) {
         empMapper.changeEmp(emp);
     }
+
+    @Override
+    public String queryEmpAdminID(String empid) {
+        return empMapper.queryEmpAdminID(empid);
+    }
+
+    @Override
+    public void delEmpByAdminID(String adminID) {
+        empMapper.delEmpByAdminID(adminID);
+    }
 }

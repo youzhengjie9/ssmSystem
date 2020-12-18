@@ -78,6 +78,9 @@
             border-top-right-radius: 0;
         }
 
+        #encode{
+            width: 60px;
+        }
 
 
     </style>
@@ -91,9 +94,12 @@
     <input type="text" id="inputEmail" name="id" class="form-control" placeholder="帐号" required autofocus>
     <label for="inputPassword" class="sr-only">密码</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
+<%--    <label>验证码</label>--%>
+<%--    验证码:<input id="encode" type="text"><img src="${pageContext.request.contextPath}/imgServlet">--%>
+<%--    <img src="">--%>
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me" name="isRemember"> Remember me
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

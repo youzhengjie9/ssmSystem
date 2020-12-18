@@ -13,16 +13,22 @@
             <result property="deptid" column="deptid"/>
             <result property="deptName" column="deptName"/>
         </association>
+        <association property="admin" javaType="com.pojo.admin">
+            <result property="id" column="id"/>
+            <result property="password" column="password"/>
+        </association>
     </resultMap>
 
 
     <select id="queryAllEmp" resultMap="res">
 --      多表查询别忘了等值连接
-       select empid,empName,emp.deptid,dept.deptName from emp,dept where dept.deptid=emp.deptid;
+       select empid,empName,emp.deptid,dept.deptName,admin.id,admin.password from emp,dept,admin where dept.deptid=emp.deptid
+       and admin.id=emp.id
+       ;
     </select>
 
     <insert id="addEmp" parameterType="com.pojo.emp">
-        insert into emp (empid,empName,deptid) values (#{empid},#{empName},#{dept.deptid});
+        insert into emp (empid,empName,deptid,id) values (#{empid},#{empName},#{dept.deptid},#{admin.id});
     </insert>
 
 
@@ -34,5 +40,16 @@
     <update id="changeEmp" parameterType="com.pojo.emp">
         update emp set empName = #{empName}, deptid= #{dept.deptid} where empid=#{empid};
     </update>
+
+
+    <select id="queryEmpAdminID" resultType="java.lang.String">
+        select id from emp where empid=#{empid};
+    </select>
+
+
+    <delete id="delEmpByAdminID">
+        delete from emp where id=#{adminID}
+    </delete>
+
 
 </mapper>

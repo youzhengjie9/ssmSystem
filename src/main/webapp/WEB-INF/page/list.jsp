@@ -43,6 +43,10 @@
         position: absolute;
         /*background-color: #00F7DE;*/
     }
+    #touxiang{
+        border-radius: 50%;
+
+    }
 
 </style>
 
@@ -101,11 +105,11 @@
 
 
 
-                                <li><img src="${pageContext.request.contextPath}/imgServlet"></li>
+                                <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><button data-toggle="modal" data-target="#myModal3" >个人中心</button></li>
+                        <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
                         <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>

@@ -1,8 +1,10 @@
 package com.controller;
 
+import net.coobird.thumbnailator.Thumbnails;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,10 +21,10 @@ public class uploadController {
 
 
     @RequestMapping(path = "/upload")
-    public String upload(HttpServletRequest request, MultipartFile multipartFile) throws IOException {
+    public String upload(HttpServletRequest request, Model model, MultipartFile multipartFile) throws IOException {
         String path=request.getSession().getServletContext().getRealPath("img");
         Subject subject = SecurityUtils.getSubject();
-
+        model.addAttribute("user",subject.getPrincipal());
         String imgpath=path+"\\img-"+subject.getPrincipal()+".jpg";
         String filename = multipartFile.getOriginalFilename();
         //判断是否是图片类型
@@ -39,15 +41,19 @@ public class uploadController {
         {
 //        System.out.println("是图片格式");
             InputStream in = multipartFile.getInputStream();
-            byte[] bytes=new byte[in.available()];
-            in.read(bytes);
+//            byte[] bytes=new byte[in.available()];
+//            in.read(bytes);
 
-            BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(imgpath));
-//            BufferedImage bufferedImage=new BufferedImage(55,55,BufferedImage.TYPE_INT_RGB);
-//            bufferedImage.
-            bufferedOutputStream.write(bytes);
-            bufferedOutputStream.flush();
-            bufferedOutputStream.close();
+            //图片压缩
+            Thumbnails.of(in).size(47,47).toFile(imgpath);
+
+
+//            BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(imgpath));
+////            BufferedImage bufferedImage=new BufferedImage(55,55,BufferedImage.TYPE_INT_RGB);
+////            bufferedImage.
+//            bufferedOutputStream.write(bytes);
+//            bufferedOutputStream.flush();
+//            bufferedOutputStream.close();
 
 
         }else {

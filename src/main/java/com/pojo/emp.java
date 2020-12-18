@@ -6,14 +6,16 @@ public class emp {
     private String empName;
 //    private String deptid;
     private dept dept;
+    private admin admin; //每个员工都有admin帐号
 
     public emp() {
     }
 
-    public emp(int empid, String empName, com.pojo.dept dept) {
+    public emp(int empid, String empName, com.pojo.dept dept, com.pojo.admin admin) {
         this.empid = empid;
         this.empName = empName;
         this.dept = dept;
+        this.admin = admin;
     }
 
     public int getEmpid() {
@@ -40,12 +42,21 @@ public class emp {
         this.dept = dept;
     }
 
+    public com.pojo.admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(com.pojo.admin admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
         return "emp{" +
                 "empid=" + empid +
                 ", empName='" + empName + '\'' +
                 ", dept=" + dept +
+                ", admin=" + admin +
                 '}';
     }
 }

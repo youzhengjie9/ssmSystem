@@ -53,7 +53,10 @@
         /*background-color: #00F7DE;*/
     }
 
+    #touxiang{
+        border-radius: 50%;
 
+    }
 
 </style>
 
@@ -97,11 +100,11 @@
             <%--                <button type="submit" class="btn btn-default">Submit</button>--%>
             <%--            </form>--%>
             <ul class="nav navbar-nav navbar-right">
-                <li><img src="${pageContext.request.contextPath}/imgServlet"></li>
+                <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><button data-toggle="modal" data-target="#myModal3" >个人中心</button></li>
+                        <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
                         <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
                     </ul>
                 </li>
@@ -220,7 +223,7 @@
                 <td>${log.remark}</td>
 <%--                <td><a href="${pageContext.request.contextPath}/TochangeRemark?logid=${log.logid}&remark=${log.remark}">添加/修改备注</a></td>--%>
                 <!-- 按钮触发模态框 -->
-               <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" value="${log.logid}" onclick="addRemark(this)">添加/修改备注</button></td>
+               <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" value="${log.logid}" onclick="addRemark(this)">添加/修改备注</button></td>
 
 
             </tr>
