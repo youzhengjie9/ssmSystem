@@ -22,6 +22,16 @@ public class empServiceImpl implements empService {
     }
 
     @Override
+    public List<emp> queryEmpByDept(String deptid) {
+        return empMapper.queryEmpByDept(deptid);
+    }
+
+    @Override
+    public String queryEmpByID(String id) {
+        return empMapper.queryEmpByID(id);
+    }
+
+    @Override
     public void addEmp(emp emp) {
         empMapper.addEmp(emp);
     }

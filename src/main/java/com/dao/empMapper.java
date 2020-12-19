@@ -10,6 +10,12 @@ public interface empMapper {
 
     List<emp> queryAllEmp();
 
+    //筛选指定部门的员工
+    List<emp> queryEmpByDept(@Param("deptid") String deptid);
+
+    //根据帐号查询出empid
+    String queryEmpByID(@Param("id") String id);
+
     void addEmp(emp emp);
 
     void delEmp(String empid);

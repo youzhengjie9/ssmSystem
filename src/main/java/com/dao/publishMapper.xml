@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dao.publishMapper">
+
+    <insert id="addPublish" parameterType="com.pojo.publish">
+        insert into publish values (#{sid},#{id},#{startTime},#{endTime},#{deptName});
+    </insert>
+
+    <select id="queryPublish" resultType="com.pojo.publish">
+        select * from publish;
+    </select>
+
+</mapper>

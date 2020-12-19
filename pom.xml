@@ -27,6 +27,12 @@
           <version>0.4.12</version>
       </dependency>
 
+<!--      redis maven-->
+      <dependency>
+          <groupId>redis.clients</groupId>
+          <artifactId>jedis</artifactId>
+          <version>2.9.0</version>
+      </dependency>
 
 
 

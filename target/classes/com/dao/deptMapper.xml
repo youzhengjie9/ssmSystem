@@ -22,5 +22,9 @@
         update dept set deptName = #{deptName} where deptid=#{deptid};
     </update>
 
+    <select id="queryDeptName" resultType="java.lang.String">
+        select deptName from dept where deptid=#{deptid}
+    </select>
+
 
 </mapper>

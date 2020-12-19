@@ -13,5 +13,8 @@
 
     </bean>
 
+    <bean id="myJedis" class="com.jedis.myJedis">
+    </bean>
+
 
 </beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.signMapper">
+
+    <insert id="addSign" parameterType="com.pojo.sign">
+        insert into sign(sid,empid,endTime,flag) values (#{sid},#{empid},#{endTime},#{flag});
+    </insert>
+
+    <select id="querySign" parameterType="java.lang.String" resultType="com.pojo.sign">
+        select sid,empid,endTime,flag from sign where empid=#{empid}
+    </select>
+
+
+    <update id="SignSuccess">
+        update sign set flag = 1 where sid=#{sid} and empid=#{empid};
+    </update>
+
+</mapper>

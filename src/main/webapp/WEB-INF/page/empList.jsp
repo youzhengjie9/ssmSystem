@@ -157,41 +157,69 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <%--                        <a onclick="xadmin.add_tab('管理员列表','admin-list.html')">--%>
                         <a href="${pageContext.request.contextPath}/adminList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite></a>
                     </li>
-
-                    <%--                    <li><a href="${pageContext.request.contextPath}/showDept">部门信息</a></li>--%>
-                    <%--                    <li><a href="${pageContext.request.contextPath}/toEmpList">员工信息</a></li>--%>
-                    <%--                    <li><a href=" ${pageContext.request.contextPath}/toLogList">查看日志</a></li>--%>
-
                     <li>
-                        <%--                        <a onclick="xadmin.add_tab('角色管理','admin-role.html')">--%>
                         <a href="${pageContext.request.contextPath}/showDept">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>部门管理</cite></a>
                     </li>
                     <li>
-                        <%--                        <a onclick="xadmin.add_tab('权限管理','admin-rule.html')">--%>
+
                         <a href="${pageContext.request.contextPath}/toEmpList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>员工管理</cite></a>
                     </li>
+
+
+
+                    <%--                     签到  开始--%>
+
                     <li>
-                        <%--                        <a onclick="xadmin.add_tab('管理员列表','admin-list.html')">--%>
+                        <a href="${pageContext.request.contextPath}/toPublishList">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>发布签到</cite></a>
+                    </li>
+                    <%--                      签到   结束    --%>
+
+
+
+
+                    <li>
                         <a href=" ${pageContext.request.contextPath}/toLogList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>日志操作</cite></a>
                     </li>
                 </ul>
+
+
             </li>
+
+            <%--          公司考勤开始   --%>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="公司考勤">&#xe726;</i>
+                    <cite>公司考勤</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/toSignList">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>我的签到</cite></a>
+                    </li>
+                </ul>
+
+
+            </li>
+            <%--    公司考勤结束--%>
 
 
 
 
         </ul>
+
     </div>
 </div>
 <!-- <div class="x-slide_left"></div> -->
@@ -204,7 +232,6 @@
 
 <%--    <h4><a href="${pageContext.request.contextPath}/toAddEmp">新增员工</a> </h4>--%>
 <%--    <br/>--%>
-
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

@@ -22,6 +22,11 @@ public class deptServiceImpl implements deptService {
     }
 
     @Override
+    public String queryDeptName(String deptid) {
+        return deptMapper.queryDeptName(deptid);
+    }
+
+    @Override
     public void addDept(dept dept) {
         deptMapper.addDept(dept);
     }

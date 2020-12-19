@@ -27,6 +27,13 @@
        ;
     </select>
 
+
+    <select id="queryEmpByDept" resultType="com.pojo.emp">
+        select empid,empName from emp where deptid=#{deptid};
+
+    </select>
+
+
     <insert id="addEmp" parameterType="com.pojo.emp">
         insert into emp (empid,empName,deptid,id) values (#{empid},#{empName},#{dept.deptid},#{admin.id});
     </insert>
@@ -50,6 +57,11 @@
     <delete id="delEmpByAdminID">
         delete from emp where id=#{adminID}
     </delete>
+
+
+    <select id="queryEmpByID" resultType="java.lang.String">
+            select empid from emp where id=#{id};
+    </select>
 
 
 </mapper>

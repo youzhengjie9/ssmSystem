@@ -1,8 +1,9 @@
-<%--
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: youzhengjie666
-  Date: 2020/12/14
-  Time: 18:20
+  Date: 2020/12/19
+  Time: 14:21
   To change this template use File | Settings | File Templates.
 --%>
 <html class="x-admin-sm">
@@ -27,10 +28,9 @@
 <script src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
 <head>
-    <title>logList</title>
+    <title>empList</title>
 </head>
 <body>
-<%--<h3>日志&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toList">返回主界面</a></h3>--%>
 <style>
     ul li a{
         text-decoration: none;
@@ -52,14 +52,13 @@
         position: absolute;
         /*background-color: #00F7DE;*/
     }
-
     #touxiang{
         border-radius: 50%;
 
     }
 
-</style>
 
+</style>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -73,45 +72,20 @@
             <a class="navbar-brand" href="${pageContext.request.contextPath}/toList">xx人力管理系统</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-<%--        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--%>
-<%--            <ul class="nav navbar-nav">--%>
-<%--                <li><a href="${pageContext.request.contextPath}/adminList">管理员信息 <span class="sr-only">(current)</span></a></li>--%>
-<%--                <li><a href="${pageContext.request.contextPath}/showDept">部门信息</a></li>--%>
-<%--                <li><a href="${pageContext.request.contextPath}/toEmpList">员工信息</a></li>--%>
-<%--                <li class="active"><a href=" ${pageContext.request.contextPath}/toLogList">查看日志</a></li>--%>
-                <%--                <li class="dropdown">--%>
-                <%--                    <a href="${pageContext.request.contextPath}/toEmpList" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工信息 <span class="caret"></span></a>--%>
-                <%--                    <ul class="dropdown-menu">--%>
-                <%--                        <li><a href="#">Action</a></li>--%>
-                <%--                        <li><a href="#">Another action</a></li>--%>
-                <%--                        <li><a href="#">Something else here</a></li>--%>
-                <%--&lt;%&ndash;                        <li role="separator" class="divider"></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li><a href="#">Separated link</a></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li role="separator" class="divider"></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li><a href="#">One more separated link</a></li>&ndash;%&gt;--%>
-                <%--                    </ul>--%>
-                <%--                </li>--%>
-<%--            </ul>--%>
-            <%--            <form class="navbar-form navbar-left">--%>
-            <%--                <div class="form-group">--%>
-            <%--                    <input type="text" class="form-control" placeholder="Search">--%>
-            <%--                </div>--%>
-            <%--                <button type="submit" class="btn btn-default">Submit</button>--%>
-            <%--            </form>--%>
-            <ul class="nav navbar-nav navbar-right">
-                <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user}<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
-                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
 
 </nav>
+
 
 
 <%--  model--%>
@@ -145,7 +119,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
 
 
 <!-- 左侧菜单开始 -->
@@ -230,32 +203,74 @@
 
 
 <div id="tb">
+<%--   公司考勤模态框--%>
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel5">发布签到</h4>
+            </div>
+            <%--
+            1.发布给所有权限为1的admin
+            2.可以进行一些筛选。比如指定部门
+            3.必须要设置一个time，最小单位是分钟
+            4.过期签到失败
+            --%>
+
+            <form method="post" action="${pageContext.request.contextPath}/publish">
+                <div class="modal-body">
+                    设置签到过期时间：<input type="text" name="time">分钟
+                    <br/>
+                    选择部门，若不选则默认全选：<select name="dept">
+                    <option value=""></option>
+                    <c:forEach items="${depts}" var="dept">
+                        <option value="${dept.deptid}">${dept.deptName}</option>
+                    </c:forEach>
+                </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">发布</button>
+                </div>
+
+            </form>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<%--  model结束--%>
+
+
+
+    <!-- 按钮触发模态框 -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal5">发布签到</button>
+
 
     <table  class="table table-hover">
         <tr>
-            <td>日志编号</td>
-            <td>用户id</td>
-            <td>操作类型</td>
-            <td>内容</td>
-            <td>时间</td>
-            <td>备注</td>
-            <td>操作</td>
+            <td>签到id</td>
+            <td>发布者id</td>
+            <td>签到开始时间</td>
+            <td>签到结束时间</td>
+            <td>目标部门</td>
         </tr>
-        <c:forEach items="${logs}" var="log">
+        <c:forEach items="${publishs}" var="publish">
             <tr>
-                <td>${log.logid}</td>
-                <td>${log.id}</td>
-                <td>${log.type}</td>
-                <td>${log.operation}</td>
-                <td>${log.date}</td>
-                <td>${log.remark}</td>
-<%--                <td><a href="${pageContext.request.contextPath}/TochangeRemark?logid=${log.logid}&remark=${log.remark}">添加/修改备注</a></td>--%>
-                <!-- 按钮触发模态框 -->
-               <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" value="${log.logid}" onclick="addRemark(this)">添加/修改备注</button></td>
-
-
+                <td>${publish.sid}</td>
+                <td>${publish.id}</td>
+                <td>${publish.startTime}</td>
+                <td>${publish.endTime}</td>
+                <td>${publish.deptName}</td>
             </tr>
+
         </c:forEach>
+
+
+
 
 
     </table>
@@ -263,51 +278,6 @@
 
 
 
-<!-- 日志备注模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">添加/修改备注</h4>
-            </div>
-            <form method="post" action="${pageContext.request.contextPath}/changeRemark">
-                <div class="modal-body">
-                    <input type="hidden" name="logid" id="logid" value="">
-                   新备注： <input type="text" name="remark" id="remark" value="">
-                    <br/>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">确认备注</button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
-
-<script>
-    function addRemark(ele) {
-        document.getElementById('logid').value=ele.value;
-        // document.getElementById('remark').value=remark;
-        /**
-         * 有bug 。。如果备注是英文时无法传值，连function也进不来
-         */
-
-        // alert(remark);
-        // if(typeof ele.value == "undefined"){
-        //     document.getElementById('remark').value="";
-        // }else{
-        //     document.getElementById('remark').value=remark+"";
-        // }
-
-
-    }
-
-
-</script>
 
 
 

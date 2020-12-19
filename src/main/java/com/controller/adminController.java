@@ -31,6 +31,13 @@ public class adminController {
     private authorityService authorityService;
     private logMapper logMapper;
     private empService empService;
+    private deptService deptService;
+
+
+    @Autowired
+    public void setDeptService(com.service.deptService deptService) {
+        this.deptService = deptService;
+    }
 
     @Autowired
     public void setEmpService(com.service.empService empService) {
@@ -61,6 +68,7 @@ public class adminController {
     public String toList(Model model){
         Subject subject = SecurityUtils.getSubject();
         model.addAttribute("user",subject.getPrincipal());
+        model.addAttribute("depts",deptService.queryAllDept());
         return "list";
     }
 
