@@ -53,6 +53,9 @@
                 /delEmp/* =roles[admin]
                 /toLogList =roles[admin]
                 /changeRemark =roles[admin]
+                /toPublishList =roles[admin]
+                /publish =roles[admin]
+
                 /** =authc
             </value>
 
