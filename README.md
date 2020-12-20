@@ -1,11 +1,8 @@
 # ssm.shiro
 
 #### 介绍
-大二上学期的项目2,采用ssm+shiro整合的人力管理系统
-
-#### 软件架构
-软件架构说明
-
+大二上学期的项目2,采用ssm+shiro+Redis整合的人力管理系统
+ 
 #### 开发环境
 1. Windows10
 2. IntelliJ IDEA 2019.3.5
@@ -21,23 +18,7 @@
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1.  开启Mysql和Redis服务
+2.  下载好Tomcat
+3.  直接运行即可
+4.  因为本人目前大二，所有东西都是靠自学而成，也是一人完成，如有不足希望大佬们提出宝贵意见-.-
