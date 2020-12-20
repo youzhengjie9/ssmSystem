@@ -8,14 +8,13 @@
 2. IntelliJ IDEA 2019.3.5
 
 #### 使用技术
-后端技术：
+
 1.  spring
 2.  springMVC
 3.  Mybatis
 4.  shiro
 5.  Redis
 6.  Mysql
-前端技术：
 7.  bootstrap
 
 #### 使用说明
