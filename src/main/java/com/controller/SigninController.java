@@ -2,21 +2,21 @@ package com.controller;
 
 import com.jedis.myJedis;
 import com.pojo.emp;
+import com.pojo.logger;
 import com.pojo.publish;
 import com.pojo.sign;
-import com.service.deptService;
-import com.service.empService;
-import com.service.publishService;
-import com.service.signService;
+import com.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import redis.clients.jedis.Jedis;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +29,12 @@ public class SigninController {
     private signService signService;
     private deptService deptService;
     private empService empService;
+    private logService logService;
+
+    @Autowired
+    public void setLogService(com.service.logService logService) {
+        this.logService = logService;
+    }
 
     @Autowired
     public void setEmpService(com.service.empService empService) {
@@ -62,15 +68,29 @@ public class SigninController {
         model.addAttribute("publishs",publishService.queryPublish());
         model.addAttribute("depts",deptService.queryAllDept());
         model.addAttribute("curTime",new Date().getTime());
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
+
 
         return "publishList";
     }
-
+    //抽取日志方法
+    public  void addlog(HttpServletRequest request, String type){
+        //日志操作
+        String logid = UUID.randomUUID().toString().replaceAll("-", "");
+        Subject subject = SecurityUtils.getSubject();
+        String id = (String) subject.getPrincipal();
+        String operation=request.getServletPath();
+        Date date = new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateTime = dateFormat.format(date);
+        logService.addLog(new logger(logid,id,type,operation,dateTime,""));
+    }
 
 
     //发布签到
     @RequestMapping(path = "/publish")
-    public String publish(String time,String dept){
+    public String publish(HttpServletRequest request,String time, @Value("发布签到") String type, String dept){
         try {
             Jedis jedis = myJedis.getJedis();
             Subject subject = SecurityUtils.getSubject();
@@ -89,16 +109,15 @@ public class SigninController {
                 Date d = new Date();
 //                java.sql.Date date=(java.sql.Date)d;
                 long start = d.getTime(); //开始的时间======转换成长整数
-                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String dateTime = format.format(d);
 
-
-                System.out.println(dateTime);
 
 
                 //结束时间
                 long e = Long.parseLong(time);
                 long end=e*60000; //结束时间毫秒
+                long curEnd=start+end;
                 java.sql.Date date1 = new java.sql.Date(start + end);  //结束时间
 
                 String endTime = format.format(date1);
@@ -111,16 +130,21 @@ public class SigninController {
                         signService.addSign(new sign(sid,emp.getEmpid(),endTime,0));
                     }
                     System.out.println("给所有部门员工发布签到成功！！");
+
+                    String logid = UUID.randomUUID().toString().replaceAll("-", "");
+                     addlog(request,type);
+
                 }else{
                     //发布给指定部门员工签到
                     String deptName = deptService.queryDeptName(dept);
                     publishService.addPublish(new publish(sid,id,dateTime,endTime,deptName));
+
                     List<emp> emps = empService.queryEmpByDept(dept);
                     for (emp emp : emps) {
                         signService.addSign(new sign(sid,emp.getEmpid(),endTime,0));
                     }
                     System.out.println("给指定部门员工发布签到成功！！");
-
+                    addlog(request,type);
                 }
 
 
@@ -147,6 +171,7 @@ public class SigninController {
 
         List<sign> signs = signService.querySign(empid); //根据empid查询出所有签到记录
         model.addAttribute("signs",signs);
+        model.addAttribute("user",subject.getPrincipal());
         return "signList";
     }
 
@@ -164,14 +189,23 @@ public class SigninController {
     @RequestMapping(path = "/sign/{sid}")
     public String signIn(@PathVariable("sid") String sid){
         Jedis jedis = myJedis.getJedis();
-        Subject subject = SecurityUtils.getSubject();
-        String signKey="sign"+subject.getPrincipal();
+
+//        Subject subject = SecurityUtils.getSubject();
+//        String signKey="sign"+subject.getPrincipal();
+
+//        获取签到发布者id
+        String adminid = publishService.queryAdminByid(sid);
+        String signKey="sign"+adminid;
+
+
+
         String s = jedis.get(signKey); //判断签到是否过期
-        if(s==null||s.equals("")){
+        if(s==null){
             System.out.println("签到时间已经过了。");
             return "list";
         }else {
             //签到
+            Subject subject = SecurityUtils.getSubject();
             String id = (String) subject.getPrincipal();
             String empid = empService.queryEmpByID(id);
             signService.SignSuccess(sid,empid);

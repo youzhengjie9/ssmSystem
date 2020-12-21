@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: youzhengjie666
   Date: 2020/12/19
@@ -8,6 +8,8 @@
 <html class="x-admin-sm">
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -91,6 +93,36 @@
 </nav>
 
 
+<!-- 个人中心模态框 -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel3">个人中心</h4>
+            </div>
+            <%--            <form method="post" action="${pageContext.request.contextPath}/">--%>
+            <div class="modal-body">
+                <form method="post" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
+                    上传头像:<input type="file" name="multipartFile">
+                    <br/>
+                    <input type="submit" value="上传">
+                </form>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <%--                    <button type="submit" class="btn btn-primary"></button>--%>
+            </div>
+
+            <%--            </form>--%>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
 
 <!-- 左侧菜单开始 -->
@@ -183,11 +215,25 @@
         <c:forEach items="${signs}" var="sign">
             <tr>
                 <td>${sign.sid}</td>
-                <td>${sign.endTime}</td>
                 <td>
-                    <c:if test="${sign.flag==0}">
+<%--                <fmt:parseDate value="${fn:substring(sign.endTime, 0, 19)}" var="date" pattern="yyyy-MM-dd HH:mm:ss"></fmt:parseDate>--%>
+<%--                <td>${date.getTime()}</td>--%>
+                    ${fn:substring(sign.endTime, 0, 19)}
+                </td>
+                <td>
+<%--                    fmt标签将时间字符串转换成Date类型，这样我们就可以获取他的时间戳，用时间戳来比较大小--%>
+                     <fmt:parseDate var="endDate" value="${fn:substring(sign.endTime,0,19)}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:parseDate>
+
+<%--                获取当前时间Date对象--%>
+                <c:set var="curDate" value="<%=new Date()%>"></c:set>
+<%--           curDate.getTime()>endDate.getTime() 比较时间戳      --%>
+                    <c:if test="${sign.flag==0&&curDate.getTime()>endDate.getTime()}">
+                        <a href="#" class="btn btn-danger btn-sm">已过期</a>
+                    </c:if>
+                    <c:if test="${sign.flag==0&&curDate.getTime()<=endDate.getTime()}">
                         <a href="${pageContext.request.contextPath}/sign/${sign.sid}" class="btn btn-primary btn-sm">签到</a>
                     </c:if>
+
                     <c:if test="${sign.flag==1}">
                         <a href="#" class="btn btn-success btn-sm">已签到</a>
                     </c:if>

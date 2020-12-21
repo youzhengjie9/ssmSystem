@@ -9,6 +9,7 @@
 <html class="x-admin-sm">
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -262,8 +263,11 @@
             <tr>
                 <td>${publish.sid}</td>
                 <td>${publish.id}</td>
-                <td>${publish.startTime}</td>
-                <td>${publish.endTime}</td>
+
+<%--                因为datetime取出来的数据有.0小尾巴，我们可以用sjtl的functions去subString裁剪传来的时间--%>
+                <td>${fn:substring(publish.startTime, 0,19)}</td>
+                <td>${fn:substring(publish.endTime, 0,19)}</td>
+
                 <td>${publish.deptName}</td>
             </tr>
 

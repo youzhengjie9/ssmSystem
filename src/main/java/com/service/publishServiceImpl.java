@@ -27,4 +27,9 @@ public class publishServiceImpl implements publishService {
     public List<publish> queryPublish() {
         return publishMapper.queryPublish();
     }
+
+    @Override
+    public String queryAdminByid(String sid) {
+        return publishMapper.queryAdminByid(sid);
+    }
 }

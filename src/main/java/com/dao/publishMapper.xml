@@ -14,4 +14,8 @@
         select * from publish;
     </select>
 
+
+    <select id="queryAdminByid" resultType="java.lang.String">
+        select id from publish where sid=#{sid};
+    </select>
 </mapper>

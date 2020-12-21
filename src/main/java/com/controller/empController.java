@@ -8,6 +8,7 @@ import com.pojo.logger;
 import com.service.adminService;
 import com.service.deptService;
 import com.service.empService;
+import com.service.logService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +28,7 @@ public class empController {
 
     private empService empService;
     private deptService deptService;
-    private com.dao.logMapper logMapper;
+    private logService logService;
     private adminService adminService;
 
     @Autowired
@@ -37,9 +37,10 @@ public class empController {
     }
 
     @Autowired
-    public void setLogMapper(com.dao.logMapper logMapper) {
-        this.logMapper = logMapper;
+    public void setLogService(com.service.logService logService) {
+        this.logService = logService;
     }
+
     @Autowired
     public void setDeptService(com.service.deptService deptService) {
         this.deptService = deptService;
@@ -69,7 +70,7 @@ public class empController {
         Date date = new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTime = dateFormat.format(date);
-        logMapper.addLog(new logger(logid,id,type,operation,dateTime,""));
+        logService.addLog(new logger(logid,id,type,operation,dateTime,""));
     }
 
 

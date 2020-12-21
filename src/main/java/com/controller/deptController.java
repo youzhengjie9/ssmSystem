@@ -4,6 +4,7 @@ import com.dao.logMapper;
 import com.pojo.dept;
 import com.pojo.logger;
 import com.service.deptService;
+import com.service.logService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,11 @@ import java.util.UUID;
 public class deptController {
 
     private deptService deptService;
-    private logMapper logMapper;
+    private logService logService;
 
     @Autowired
-    public void setLogMapper(com.dao.logMapper logMapper) {
-        this.logMapper = logMapper;
+    public void setLogService(com.service.logService logService) {
+        this.logService = logService;
     }
 
     @Autowired
@@ -46,7 +47,7 @@ public class deptController {
         Date date = new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTime = dateFormat.format(date);
-        logMapper.addLog(new logger(logid,id,type,operation,dateTime,""));
+        logService.addLog(new logger(logid,id,type,operation,dateTime,""));
     }
 
     @RequestMapping(path = "/showDept")

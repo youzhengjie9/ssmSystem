@@ -3,10 +3,7 @@ package com.controller;
 import com.dao.logMapper;
 import com.pojo.admin;
 import com.pojo.logger;
-import com.service.adminService;
-import com.service.authorityService;
-import com.service.deptService;
-import com.service.empService;
+import com.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -29,7 +26,7 @@ public class adminController {
 
     private adminService adminService;
     private authorityService authorityService;
-    private logMapper logMapper;
+    private logService logService;
     private empService empService;
     private deptService deptService;
 
@@ -45,8 +42,8 @@ public class adminController {
     }
 
     @Autowired
-    public void setLogMapper(com.dao.logMapper logMapper) {
-        this.logMapper = logMapper;
+    public void setLogService(com.service.logService logService) {
+        this.logService = logService;
     }
 
     @Autowired
@@ -102,7 +99,7 @@ public class adminController {
         Date date = new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTime = dateFormat.format(date);
-        logMapper.addLog(new logger(logid,id,type,operation,dateTime,""));
+        logService.addLog(new logger(logid,id,type,operation,dateTime,""));
     }
 
 
