@@ -82,6 +82,23 @@
     }
 
 
+    #pageHelpers{
+        width: 450px;
+        height: 50px;
+        float: right;
+    }
+
+    #p1{
+        color: cornflowerblue;
+    }
+    #p2{
+        color: cornflowerblue;
+    }
+    #p3{
+        color: cornflowerblue;
+    }
+
+
 </style>
 
 <nav class="navbar navbar-inverse">
@@ -218,7 +235,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="${pageContext.request.contextPath}/adminList">
+                        <a href="${pageContext.request.contextPath}/adminList/1">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite></a>
                     </li>
@@ -249,7 +266,7 @@
 
 
                     <li>
-                        <a href=" ${pageContext.request.contextPath}/toLogList">
+                        <a href=" ${pageContext.request.contextPath}/toLogList/1">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>日志操作</cite></a>
                     </li>
@@ -313,6 +330,65 @@
             </tr>
         </c:forEach>
     </table>
+
+        <div><h3>当前是第<span id="p1">${pageInfo.pageNum}</span>页,一共有<span id="p2">${pageInfo.pages}</span>页,<span id="p3">${pageInfo.total}</span>条记录</h3></div>
+
+
+
+        <div id="pageHelpers">
+            <%--    分页--%>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <c:if test="${pageInfo.hasPreviousPage}">
+                            <a href="${pageContext.request.contextPath}/adminList/${pageInfo.pageNum-1}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </c:if>
+                        <c:if test="${!pageInfo.hasPreviousPage}">
+                            <a href="#" aria-label="Previous" onclick="nopre()">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </c:if>
+                    </li>
+                    <%--              pageInfo.navigatepageNums : 其实就是pageHelper帮你分好了的导航栏数字--%>
+                    <c:forEach items="${pageInfo.navigatepageNums}" var="page">
+
+                        <c:if test="${page!=pageInfo.pageNum}">
+                            <li><a href="${pageContext.request.contextPath}/adminList/${page}">${page}</a> </li>
+                        </c:if>
+
+<%--                        当遍历导航栏页号时，页号等于我们当前点击的页号一致就高亮--%>
+                        <c:if test="${page==pageInfo.pageNum}">
+                            <li class="active"><a  href="${pageContext.request.contextPath}/adminList/${page}">${page}</a></li>
+                        </c:if>
+
+                    </c:forEach>
+
+
+                    <li>
+
+                        <c:if test="${pageInfo.hasNextPage}">
+
+
+                            <a href="${pageContext.request.contextPath}/adminList/${pageInfo.pageNum+1}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </c:if>
+                        <c:if test="${!pageInfo.hasNextPage}">
+                            <a href="#" aria-label="Previous" onclick="noNext()">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </c:if>
+
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+
+
 </div>
 
 
@@ -352,6 +428,13 @@
 
 ，<script type="text/javascript">
 
+    function nopre() {
+        alert("哥，已经是第一页了，上不去了！")
+    }
+
+    function noNext() {
+        alert("哥，已经是最后一页了，不能再下了！")
+    }
 
 
     function change(data) {

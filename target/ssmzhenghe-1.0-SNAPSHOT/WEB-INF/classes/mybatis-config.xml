@@ -10,7 +10,14 @@
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
-
+    <!-- 配置mybatis的分页插件PageHelper -->
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 设置数据库类型Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库 -->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
     <mappers>
         <package name="com.dao"/>
     </mappers>

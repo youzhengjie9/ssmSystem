@@ -6,7 +6,7 @@
 <mapper namespace="com.dao.signMapper">
 
     <insert id="addSign" parameterType="com.pojo.sign">
-        insert into sign(sid,empid,endTime,flag) values (#{sid},#{empid},#{endTime},#{flag});
+        insert into sign(sid,empid,endTime,flag) values (#{sid},#{empid},#{endTime},#{flag})
     </insert>
 
     <select id="querySign" parameterType="java.lang.String" resultType="com.pojo.sign">
@@ -15,7 +15,7 @@
 
 
     <update id="SignSuccess">
-        update sign set flag = 1 where sid=#{sid} and empid=#{empid};
+        update sign set flag = 1 where sid=#{sid} and empid=#{empid}
     </update>
 
 </mapper>

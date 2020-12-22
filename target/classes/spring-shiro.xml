@@ -51,7 +51,7 @@
                 /AddEmp =roles[admin]
                 /changeEmp =roles[admin]
                 /delEmp/* =roles[admin]
-                /toLogList =roles[admin]
+                /toLogList/* =roles[admin]
                 /changeRemark =roles[admin]
                 /toPublishList =roles[admin]
                 /publish =roles[admin]

@@ -16,6 +16,7 @@
 5.  Redis
 6.  Mysql
 7.  bootstrap
+8.  pageHelper分页插件
 
 #### 使用说明
 

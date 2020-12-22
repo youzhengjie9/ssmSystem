@@ -6,7 +6,7 @@
 <mapper namespace="com.dao.authorityMapper">
 
     <select id="queryAllAutho" resultType="com.pojo.authority">
-        select * from authority;
+        select * from authority
     </select>
 
 

@@ -1,6 +1,8 @@
 package com.controller;
 
 import com.dao.logMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pojo.admin;
 import com.pojo.logger;
 import com.service.*;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -80,9 +83,13 @@ public class adminController {
         return "login";
     }
 
-    @RequestMapping(path = "/adminList")
-    public String adminList( Model model){
-        model.addAttribute("admin",adminService.queryAllAdmin());
+    @RequestMapping(path = "/adminList/{num}")
+    public String adminList(@PathVariable("num") int num, Model model){
+        PageHelper.startPage(num,5);//开始分页。
+        List<admin> admins = adminService.queryAllAdmin();
+        model.addAttribute("admin",admins);
+        PageInfo pageInfo=new PageInfo(admins);
+        model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("authorities",authorityService.queryAllAutho());
         Subject subject = SecurityUtils.getSubject();
         model.addAttribute("user",subject.getPrincipal());

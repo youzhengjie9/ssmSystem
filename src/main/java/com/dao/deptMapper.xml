@@ -7,11 +7,11 @@
 <mapper namespace="com.dao.deptMapper">
 
     <select id="queryAllDept" resultType="com.pojo.dept">
-        select * from dept;
+        select * from dept
     </select>
 
     <insert id="addDept" parameterType="com.pojo.dept">
-        insert into dept (deptid,deptName) values (#{deptid},#{deptName});
+        insert into dept (deptid,deptName) values (#{deptid},#{deptName})
     </insert>
 
     <delete id="delDept" parameterType="java.lang.String">
@@ -19,7 +19,7 @@
     </delete>
 
     <update id="changeDept" parameterType="com.pojo.dept">
-        update dept set deptName = #{deptName} where deptid=#{deptid};
+        update dept set deptName = #{deptName} where deptid=#{deptid}
     </update>
 
     <select id="queryDeptName" resultType="java.lang.String">

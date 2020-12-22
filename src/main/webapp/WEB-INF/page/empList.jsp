@@ -157,7 +157,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="${pageContext.request.contextPath}/adminList">
+                        <a href="${pageContext.request.contextPath}/adminList/1">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite></a>
                     </li>
@@ -188,7 +188,7 @@
 
 
                     <li>
-                        <a href=" ${pageContext.request.contextPath}/toLogList">
+                        <a href=" ${pageContext.request.contextPath}/toLogList/1">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>日志操作</cite></a>
                     </li>

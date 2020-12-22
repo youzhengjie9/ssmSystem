@@ -7,15 +7,15 @@
 <mapper namespace="com.dao.publishMapper">
 
     <insert id="addPublish" parameterType="com.pojo.publish">
-        insert into publish values (#{sid},#{id},#{startTime},#{endTime},#{deptName});
+        insert into publish values (#{sid},#{id},#{startTime},#{endTime},#{deptName})
     </insert>
 
     <select id="queryPublish" resultType="com.pojo.publish">
-        select * from publish;
+        select * from publish
     </select>
 
 
     <select id="queryAdminByid" resultType="java.lang.String">
-        select id from publish where sid=#{sid};
+        select id from publish where sid=#{sid}
     </select>
 </mapper>
