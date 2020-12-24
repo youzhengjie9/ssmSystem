@@ -27,5 +27,8 @@ public interface empMapper {
     String queryEmpAdminID(@Param("empid") String empid);
 
 
+    String queryEmpNameByEmpid(@Param("empid") int empid);
+
+    String queryDeptidByEmpid(@Param("empid") int empid);
 
 }

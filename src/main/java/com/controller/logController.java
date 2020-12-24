@@ -13,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class logController {
@@ -54,7 +57,39 @@ public class logController {
     @RequestMapping(path = "/changeRemark")
     public String changeRemark(String logid,String remark){
         logService.changeRemark(logid,remark);
-        return "redirect:/toLogList";
+        return "redirect:/toLogList/1";
+    }
+
+
+    //日志文件导出
+    @RequestMapping(path = "/export")
+    public String export(HttpServletRequest request) throws IOException {
+        String path = request.getSession().getServletContext().getRealPath("logger");
+        String name = UUID.randomUUID().toString().replaceAll("-", "");
+        String logpath=path+"\\log_"+name+".log";
+        File logfile = new File(logpath);
+        File dir = new File(path);
+        if(!dir.exists()||!dir.isDirectory()){
+            dir.mkdir();
+        }
+        if(!logfile.exists()){
+            logfile.createNewFile();
+        }
+//        设置FileOutputStream可以追加为true==> FileOutputStream(logfile,true)
+        BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(logfile,true));
+        List<logger> loggers = logService.showLog();
+        for (int i = 0; i < loggers.size(); i++) {
+            String str="日志编号:"+loggers.get(i).getLogid()+"       用户id:"+loggers.get(i).getId()+"      操作类型:"+loggers.get(i).getType()+"     内容: "+loggers.get(i).getOperation()
+                    +"      时间:"+loggers.get(i).getDate()+"      备注:"+loggers.get(i).getRemark();
+            bufferedOutputStream.write(str.getBytes());
+            String br="\r\n";
+            bufferedOutputStream.write(br.getBytes());
+        }
+        bufferedOutputStream.flush();
+        bufferedOutputStream.close();
+
+
+        return "redirect:/toLogList/1";
     }
 
 

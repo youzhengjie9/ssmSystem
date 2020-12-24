@@ -1,14 +1,8 @@
 package com.controller;
 
-import com.dao.logMapper;
-import com.pojo.admin;
-import com.pojo.authority;
-import com.pojo.emp;
-import com.pojo.logger;
-import com.service.adminService;
-import com.service.deptService;
-import com.service.empService;
-import com.service.logService;
+import com.jedis.myJedis;
+import com.pojo.*;
+import com.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import redis.clients.jedis.Jedis;
+
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +26,12 @@ public class empController {
     private deptService deptService;
     private logService logService;
     private adminService adminService;
+    private luckdrawService luckdrawService;
+
+    @Autowired
+    public void setLuckdrawService(com.service.luckdrawService luckdrawService) {
+        this.luckdrawService = luckdrawService;
+    }
 
     @Autowired
     public void setAdminService(com.service.adminService adminService) {
@@ -106,6 +108,70 @@ public class empController {
 
         return "redirect:/toEmpList";
     }
+
+    //员工抽奖
+    @RequestMapping(path = "/toLuckDraw")
+    public String toluckdraw(Model model){
+        model.addAttribute("depts",deptService.queryAllDept());
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
+        List<luckdraw> luckdraws = luckdrawService.queryAllDraw();
+        model.addAttribute("luckdraws",luckdraws);
+        return "LuckDraw";
+    }
+
+    @RequestMapping(path = "/luckdraw")
+    public String luckdraw(HttpServletRequest request,@Value("抽奖") String type,luckdraw luckdraw){
+        addlog(request,type);
+        myJedis myJedis = new myJedis();
+        Jedis jedis = myJedis.getJedis(); //获取Jedis对象
+        if(luckdraw.getDept().getDeptid()==null||luckdraw.getDept().getDeptid().equals("")){
+            List<emp> emps = empService.queryAllEmp();
+            for (emp emp : emps) {
+                jedis.sadd("draw",emp.getEmpid()+"");
+            }
+            String winner = jedis.srandmember("draw");
+
+            System.out.println("winner:"+winner);
+
+            int empid=Integer.parseInt(winner);
+            String empName = empService.queryEmpNameByEmpid(empid);
+            String deptid = empService.queryDeptidByEmpid(empid);
+            String deptName = deptService.queryDeptName(deptid);
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dt = simpleDateFormat.format(date);
+            luckdraw winDraw=new luckdraw(empid,empName,new dept(deptid,deptName),luckdraw.getDraw(),dt);
+            luckdrawService.addDraw(winDraw);
+
+        }else {
+
+            List<emp> emps = empService.queryEmpByDept(luckdraw.getDept().getDeptid());
+            for (emp emp : emps) {
+                jedis.sadd("draw",emp.getEmpid()+"");
+            }
+            String winner = jedis.srandmember("draw");
+
+            System.out.println("winner:"+winner);
+
+            int empid = Integer.parseInt(winner);
+            String empName = empService.queryEmpNameByEmpid(empid);
+            String deptid = empService.queryDeptidByEmpid(empid);
+            String deptName = deptService.queryDeptName(deptid);
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dt = simpleDateFormat.format(date);
+            luckdraw winDraw=new luckdraw(empid,empName,new dept(deptid,deptName),luckdraw.getDraw(),dt);
+            luckdrawService.addDraw(winDraw);
+
+        }
+
+
+
+        return "redirect:/toLuckDraw";
+    }
+
+
 
 
 }

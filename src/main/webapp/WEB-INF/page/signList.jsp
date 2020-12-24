@@ -188,6 +188,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>我的签到</cite></a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/toLuckDraw">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>员工抽奖</cite></a>
+                    </li>
                 </ul>
 
 

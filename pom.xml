@@ -20,6 +20,15 @@
   </properties>
 
   <dependencies>
+
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.16.18</version>
+          <scope>provided</scope>
+      </dependency>
+
+
 <!--   Google image jar   图像操作-->
       <dependency>
           <groupId>net.coobird</groupId>

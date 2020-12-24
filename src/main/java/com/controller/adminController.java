@@ -119,7 +119,7 @@ public class adminController {
         addlog(request,type);
 
 
-        return "redirect:/adminList";
+        return "redirect:/adminList/1";
     }
 
 
@@ -128,7 +128,7 @@ public class adminController {
         adminService.addAdmin(admin);
         //日志
         addlog(request,type);
-        return "redirect:/adminList";
+        return "redirect:/adminList/1";
     }
 
 
@@ -143,7 +143,7 @@ public class adminController {
 
         //日志
         addlog(request,type);
-        return "redirect:/adminList";
+        return "redirect:/adminList/1";
     }
 
 

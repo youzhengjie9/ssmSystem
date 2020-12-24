@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.dao.luckdrawMapper">
+
+    <insert id="addDraw" parameterType="com.pojo.luckdraw">
+        insert into luckdraw (empid,empName,deptid,draw,date) values (#{empid},#{empName},#{dept.deptid},#{draw},#{date});
+    </insert>
+
+    <resultMap id="res" type="com.pojo.luckdraw">
+        <result property="empid" column="empid"/>
+        <result property="empName" column="empName"/>
+        <result property="draw" column="draw"/>
+        <result property="date" column="date"/>
+        <association property="dept" javaType="com.pojo.dept">
+            <result property="deptid" column="deptid"/>
+            <result property="deptName" column="deptName"/>
+        </association>
+    </resultMap>
+    
+    
+    <select id="queryAllDraw" resultMap="res">
+        select empid,empName,dept.deptName,draw,date from luckdraw,dept where luckdraw.deptid= dept.deptid;
+    </select>
+
+</mapper>

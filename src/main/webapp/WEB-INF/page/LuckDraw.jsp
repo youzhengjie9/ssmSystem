@@ -1,9 +1,8 @@
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: youzhengjie666
-  Date: 2020/12/19
-  Time: 14:21
+  Date: 2020/12/23
+  Time: 20:25
   To change this template use File | Settings | File Templates.
 --%>
 <html class="x-admin-sm">
@@ -29,7 +28,7 @@
 <script src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
 <head>
-    <title>empList</title>
+    <title>员工抽奖</title>
 </head>
 <body>
 <style>
@@ -41,7 +40,7 @@
         margin-top: 20px;
     }
     #tb{
-        width: 1300px;
+        width: 1600px;
         height: 420px;
         float: left;
         margin-left: 200px;
@@ -209,73 +208,67 @@
 
 
 <div id="tb">
-<%--   公司考勤模态框--%>
-<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel5">发布签到</h4>
-            </div>
-            <%--
-            1.发布给所有权限为1的admin
-            2.可以进行一些筛选。比如指定部门
-            3.必须要设置一个time，最小单位是分钟
-            4.过期签到失败
-            --%>
 
-            <form method="post" action="${pageContext.request.contextPath}/publish">
-                <div class="modal-body">
-                    设置签到过期时间：<input type="text" name="time">分钟
-                    <br/>
-                    选择部门，若不选则默认全选：<select name="dept">
-                    <option value=""></option>
-                    <c:forEach items="${depts}" var="dept">
-                        <option value="${dept.deptid}">${dept.deptName}</option>
-                    </c:forEach>
-                </select>
 
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">新增员工</h4>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">发布</button>
-                </div>
+                <form method="post" action="${pageContext.request.contextPath}/luckdraw">
+                    <div class="modal-body">
+                        请输入奖品名称：<input type="text" name="draw" required>
+                        <br/>
+                        选择参与抽奖部门，若不选则默认参与者为全部员工：<select name="dept.deptid">
+                        <option value=""></option>
+                        <c:forEach items="${depts}" var="dept">
+                            <option value="${dept.deptid}">${dept.deptName}</option>
+                        </c:forEach>
+                    </select>
 
-            </form>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
 
 
-<%--  model结束--%>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">开始抽奖</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 
 
 
     <!-- 按钮触发模态框 -->
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal5">发布签到</button>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">员工抽奖</button>
 
 
     <table  class="table table-hover">
         <tr>
-            <td>签到id</td>
-            <td>发布者id</td>
-            <td>签到开始时间</td>
-            <td>签到结束时间</td>
-            <td>目标部门</td>
+            <td>员工编号</td>
+            <td>员工名字</td>
+            <td>所在部门</td>
+            <td>抽中奖品</td>
+            <td>中奖日期</td>
         </tr>
-        <c:forEach items="${publishs}" var="publish">
+        <c:forEach items="${luckdraws}" var="luckdraw">
             <tr>
-                <td>${publish.sid}</td>
-                <td>${publish.id}</td>
+                <td>${luckdraw.empid}</td>
+                <td>${luckdraw.empName}</td>
+                <td>${luckdraw.dept.deptName}</td>
+                <td>${luckdraw.draw}</td>
+                <td>${fn:substring(luckdraw.date,0 , 19)}</td>
+<%--                <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2" value="${emp.empName}" onclick="changeEmp(this,${emp.empid})">修改</button>--%>
+<%--                    &nbsp;&nbsp;--%>
+<%--                        &lt;%&ndash;                    <a href="${pageContext.request.contextPath}/delEmp/${emp.empid}" id="del">删除</a>&ndash;%&gt;--%>
+<%--                    <a href="#" class="btn btn-danger btn-sm" onclick="isdelEmp(this,${emp.empid})">删除</a>--%>
 
-<%--                因为datetime取出来的数据有.0小尾巴，我们可以用sjtl的functions去subString裁剪传来的时间--%>
-                <td>${fn:substring(publish.startTime, 0,19)}</td>
-                <td>${fn:substring(publish.endTime, 0,19)}</td>
-
-                <td>${publish.deptName}</td>
+<%--                </td>--%>
             </tr>
-
         </c:forEach>
 
 
@@ -284,10 +277,6 @@
 
     </table>
 </div>
-
-
-
-
 
 
 </body>

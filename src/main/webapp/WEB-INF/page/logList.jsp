@@ -230,6 +230,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>我的签到</cite></a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/toLuckDraw">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>员工抽奖</cite></a>
+                    </li>
                 </ul>
 
 
@@ -249,7 +254,9 @@
 
 
 <div id="tb">
-
+    <%--   导出--%>
+<%--    <button class="btn btn-primary btn-lg">导出</button>--%>
+        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/export">导出</a>
     <table  class="table table-hover">
         <tr>
             <td>日志编号</td>
@@ -337,6 +344,10 @@
 
 
 </div>
+
+
+
+
 
 
 

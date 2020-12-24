@@ -24,4 +24,8 @@ public interface empService {
     String queryEmpAdminID(String empid);
 
     void delEmpByAdminID(String adminID);
+
+    String queryEmpNameByEmpid(int empid);
+
+    String queryDeptidByEmpid(@Param("empid") int empid);
 }

@@ -71,32 +71,6 @@
             <a class="navbar-brand" href="${pageContext.request.contextPath}/toList">xx人力管理系统</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-<%--        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--%>
-<%--            <ul class="nav navbar-nav">--%>
-<%--                <li><a href="${pageContext.request.contextPath}/adminList">管理员信息 <span class="sr-only">(current)</span></a></li>--%>
-<%--                <li><a href="${pageContext.request.contextPath}/showDept">部门信息</a></li>--%>
-<%--                <li class="active"><a href="${pageContext.request.contextPath}/toEmpList">员工信息</a></li>--%>
-<%--                <li><a href=" ${pageContext.request.contextPath}/toLogList">查看日志</a></li>--%>
-                <%--                <li class="dropdown">--%>
-                <%--                    <a href="${pageContext.request.contextPath}/toEmpList" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工信息 <span class="caret"></span></a>--%>
-                <%--                    <ul class="dropdown-menu">--%>
-                <%--                        <li><a href="#">Action</a></li>--%>
-                <%--                        <li><a href="#">Another action</a></li>--%>
-                <%--                        <li><a href="#">Something else here</a></li>--%>
-                <%--&lt;%&ndash;                        <li role="separator" class="divider"></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li><a href="#">Separated link</a></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li role="separator" class="divider"></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li><a href="#">One more separated link</a></li>&ndash;%&gt;--%>
-                <%--                    </ul>--%>
-                <%--                </li>--%>
-<%--            </ul>--%>
-            <%--            <form class="navbar-form navbar-left">--%>
-            <%--                <div class="form-group">--%>
-            <%--                    <input type="text" class="form-control" placeholder="Search">--%>
-            <%--                </div>--%>
-            <%--                <button type="submit" class="btn btn-default">Submit</button>--%>
-            <%--            </form>--%>
             <ul class="nav navbar-nav navbar-right">
                 <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
                 <li class="dropdown">
@@ -209,6 +183,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>我的签到</cite></a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/toLuckDraw">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>员工抽奖</cite></a>
+                    </li>
                 </ul>
 
 
@@ -226,12 +205,10 @@
 <!-- 左侧菜单结束 -->
 
 
-<%--<h3>员工信息&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toList">返回主界面</a></h3>--%>
-<%--<br/>--%>
+
 <div id="tb">
 
-<%--    <h4><a href="${pageContext.request.contextPath}/toAddEmp">新增员工</a> </h4>--%>
-<%--    <br/>--%>
+
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -260,8 +237,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
-
-
 
 
 

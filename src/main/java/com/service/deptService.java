@@ -17,4 +17,5 @@ public interface deptService {
     void delDept(String deptid);
 
     void changeDept(dept dept);
+
 }

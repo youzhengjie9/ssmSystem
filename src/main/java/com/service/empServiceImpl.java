@@ -56,4 +56,14 @@ public class empServiceImpl implements empService {
     public void delEmpByAdminID(String adminID) {
         empMapper.delEmpByAdminID(adminID);
     }
+
+    @Override
+    public String queryEmpNameByEmpid(int empid) {
+        return empMapper.queryEmpNameByEmpid(empid);
+    }
+
+    @Override
+    public String queryDeptidByEmpid(int empid) {
+        return empMapper.queryDeptidByEmpid(empid);
+    }
 }

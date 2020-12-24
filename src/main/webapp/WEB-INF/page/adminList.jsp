@@ -287,6 +287,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>我的签到</cite></a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/toLuckDraw">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>员工抽奖</cite></a>
+                    </li>
                 </ul>
 
 
@@ -310,6 +315,7 @@
 <div id="tb">
     <%--   m--%>
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新增管理员</button>
+
     <table class="table table-hover">
         <tr>
             <td>管理员id</td>

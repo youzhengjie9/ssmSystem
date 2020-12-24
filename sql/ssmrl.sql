@@ -146,23 +146,34 @@ CREATE TABLE `logger` (
 
 /*!40000 ALTER TABLE `logger` DISABLE KEYS */;
 INSERT INTO `logger` (`logid`,`id`,`type`,`operation`,`date`,`remark`) VALUES 
+ ('00bcac992e7b48a6b68489891eaa4e77','admin','抽奖','/luckdraw','2020-12-24 22:09:24',''),
  ('02038b98b9254c77bbbd022042af9d0b','admin','修改部门','/changeDept','2020-12-16 17:58:40','oppo'),
  ('089d45391554416b972c47f206bd12cb','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:57:32','22'),
  ('0b0dc60475ef4a51a55239729e74b66f','admin','删除帐号、员工信息','/delAdmin/1234561','2020-12-18 18:03:47',''),
+ ('12eb63cbbe9f4acda784ef790e39be2a','admin','抽奖','/luckdraw','2020-12-24 21:47:00',''),
+ ('15569f7ecc7846d5b4b36aacabc09a5e','admin','发布签到','/publish','2020-12-21 14:25:44',''),
  ('16aece82d7c848e2ba627330cebd846f','admin','添加管理员','/AddAdmin','2020-12-16 20:27:34','33'),
  ('17d7483758ad4bf98f279199c575b4f3','admin','添加员工、开通员工帐号','/AddEmp','2020-12-19 17:57:13',''),
  ('1b8841ca16484a15b352e9fd93cbf4e0','admin','添加管理员','/AddAdmin','2020-12-15 22:50:26','55'),
+ ('213cc5c7148f465f8a7cfa66057ec8ea','admin','抽奖','/luckdraw','2020-12-24 21:57:06',''),
  ('21f44fa80fba4636bee0cbd432d7a0e1','admin','修改部门','/changeDept','2020-12-16 18:16:34',''),
  ('237f31df98a84fbcb156f535febc6962','admin','添加员工、开通员工帐号','/AddEmp','2020-12-18 18:09:25',''),
+ ('2477d63e61da46f8b30d226c84bb9e39','admin','抽奖','/luckdraw','2020-12-24 13:09:10',''),
  ('24a65c9c395a431f9e66f243bc0f7ced','admin','修改员工信息','/changeEmp','2020-12-16 20:57:55',''),
  ('2ceea8b2289a40469ad47f4be002a290','admin','修改员工信息','/changeEmp','2020-12-14 18:45:02','two'),
  ('2feb1c65371a421faf0b9391f5da065d','admin','添加部门','/addDept','2020-12-16 17:43:35','w99'),
  ('303aa5895c4848fab617ef0add79be95','admin','删除管理员','/delAdmin/my','2020-12-15 22:35:46',''),
+ ('30e9feb24e614d8b8f4ab0f62b6d1a16','admin','抽奖','/luckdraw','2020-12-24 21:57:52',''),
  ('378a2960f14249cd9ef8f2dee2b965c4','admin','添加员工','/AddEmp','2020-12-16 20:31:07',''),
+ ('3b9b31cd95524015ab1d134847f37a7b','admin','发布签到','/publish','2020-12-21 14:33:29',''),
  ('409715ce8beb47cc838de288a4da6d56','admin','添加部门','/addDept','2020-12-16 20:28:19',''),
  ('428f21cb12944d9b894bb3106c780ef6','admin','删除员工','/delEmp/undefined','2020-12-16 20:58:26',''),
+ ('43bd3d0260754f4bbf61f810d2038535','admin','抽奖','/luckdraw','2020-12-23 23:10:40',''),
+ ('44509445d4074baa9f65b83cd175e7f2','admin','抽奖','/luckdraw','2020-12-23 23:08:52',''),
  ('48363e3700e04954a0322e38217fdbf8','admin','修改部门','/changeDept','2020-12-16 19:22:28','55one'),
+ ('4c0e2ad8998b4e09a98e13f444d023dd','admin','抽奖','/luckdraw','2020-12-24 22:09:15',''),
  ('4c59fef8aab642a4aa83177a74d43306','admin','修改部门','/changeDept','2020-12-16 18:09:10',''),
+ ('4d7413eeafac4000b48f731ef07b13a2','admin','发布签到','/publish','2020-12-21 13:17:09',''),
  ('5889e7d4a31247909bf885e025a1036f','admin','删除帐号、员工信息','/delAdmin/123','2020-12-18 18:10:44',''),
  ('5c1f5aec9eaa477eb745ebe9bb1540a0','admin','修改部门','/changeDept','2020-12-16 18:13:44',''),
  ('602666fca9ed4c57a876b0ade34c746a','admin','删除部门','/delDept/222','2020-12-16 19:35:40',''),
@@ -184,14 +195,19 @@ INSERT INTO `logger` (`logid`,`id`,`type`,`operation`,`date`,`remark`) VALUES
  ('831d5322ba8c4a198d0657b3ae798b7a','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:58:04',''),
  ('8cf9ee3b627942e08c973a4ea636ab27','admin','添加管理员','/AddAdmin','2020-12-15 22:57:27',''),
  ('8d03028fc9fc458ca458e2aeab6c2fbe','admin','修改部门','/changeDept','2020-12-16 20:28:25',''),
+ ('908bd3d48e34497b9482c6e4c3d068aa','admin','抽奖','/luckdraw','2020-12-24 21:49:52',''),
  ('923774ba06174d87a898b74966fd7bb2','admin','删除管理员','/delAdmin/99','2020-12-16 20:27:48',''),
+ ('9266958ad26a4437b74f0729feb5bacf','admin','发布签到','/publish','2020-12-20 22:12:30',''),
  ('9a26a63edf8d494cb0f75437f7ec0c1b','admin','删除管理员','/delAdmin/220','2020-12-15 22:50:38',''),
  ('9d59058a87fb469dbc7934682cee2941','admin','添加部门','/addDept','2020-12-15 14:38:09',''),
  ('a18afa4152ea4294a5e0ae85325b067f','admin','修改管理员信息','/changgeAdmin','2020-12-16 20:27:41',''),
+ ('a27b74318a5a477d9a96ced321a0d6c1','admin','抽奖','/luckdraw','2020-12-24 13:08:50',''),
  ('ace2e0f6df0a445db15b73caf9ef587c','admin','修改部门','/changeDept','2020-12-16 18:31:45',''),
  ('b144775e9fb94e828c1ba24814af62d3','admin','修改部门','/changeDept','2020-12-16 18:02:56',''),
  ('b6fc7c7a1ccd43af976b02de109affce','admin','删除员工、员工帐号','/delEmp/12','2020-12-18 18:09:58',''),
+ ('b8aa2314ce3a4d02ab25d3db3178a7c8','admin','发布签到','/publish','2020-12-21 14:27:51',''),
  ('b8e100492d1b4452a0ce1882f1387d1f','admin','删除管理员','/delAdmin/922','2020-12-16 19:49:27',''),
+ ('c272a96badc04b69bff0a8b67e121974','admin','发布签到','/publish','2020-12-21 14:43:55',''),
  ('c4514d8bd2d04359b38c2fe3afc311fe','admin','添加管理员','/AddAdmin','2020-12-16 19:49:13',''),
  ('c546abc6a976413786da15bac972d1e4','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:48:58',''),
  ('c64493c819a044f797e71a22c9e7c3f5','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:49:07',''),
@@ -199,7 +215,9 @@ INSERT INTO `logger` (`logid`,`id`,`type`,`operation`,`date`,`remark`) VALUES
  ('ce944498e6cf47ba9e672154e003e265','admin','删除部门','/delDept/999','2020-12-16 17:38:42',''),
  ('d14bb42c501b4dae9263c5547edaa1c1','admin','删除员工','/delEmp/undefined','2020-12-16 20:58:17',''),
  ('d1aaf6e727c44343a6e7ea491fd375e5','admin','修改部门','/changeDept','2020-12-16 18:31:52',''),
+ ('d8dc220b7d6b4752ab5afccf5db862c6','admin','抽奖','/luckdraw','2020-12-24 21:57:37',''),
  ('dce229bbcf224035ae1688b1ca49b60e','admin','添加员工、开通员工帐号','/AddEmp','2020-12-18 21:42:50',''),
+ ('dfc4d4b18b284244adf8846b20452542','admin','抽奖','/luckdraw','2020-12-24 21:56:54',''),
  ('dfdf915ad194455abad0243c2f5baea7','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:53:11',''),
  ('e073b6c23d05464399ae33d706461472','admin','删除帐号、员工信息','/delAdmin/1234561','2020-12-18 18:09:12',''),
  ('e62671ed760242f3a44cbf937ef74a6d','admin','删除部门','/delDept/222','2020-12-16 20:28:30',''),
@@ -216,6 +234,32 @@ INSERT INTO `logger` (`logid`,`id`,`type`,`operation`,`date`,`remark`) VALUES
  ('fc2d4dca786c486fabcf8e0232822cb0','admin','添加管理员','/AddAdmin','2020-12-16 19:54:31',''),
  ('ffaffcd275d0456db2fc804f2f487484','admin','删除管理员','/delAdmin/220','2020-12-15 22:55:07','');
 /*!40000 ALTER TABLE `logger` ENABLE KEYS */;
+
+
+--
+-- Definition of table `luckdraw`
+--
+
+DROP TABLE IF EXISTS `luckdraw`;
+CREATE TABLE `luckdraw` (
+  `xuhao` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '序号',
+  `empid` int(5) unsigned NOT NULL,
+  `empName` varchar(15) NOT NULL,
+  `deptid` varchar(3) NOT NULL,
+  `draw` varchar(45) NOT NULL,
+  `date` datetime NOT NULL COMMENT '中奖日期',
+  PRIMARY KEY (`xuhao`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `luckdraw`
+--
+
+/*!40000 ALTER TABLE `luckdraw` DISABLE KEYS */;
+INSERT INTO `luckdraw` (`xuhao`,`empid`,`empName`,`deptid`,`draw`,`date`) VALUES 
+ (5,2,'李四','003','iPhone12','2020-12-24 22:09:15'),
+ (6,5,'bb','001','iPhone16','2020-12-24 22:09:24');
+/*!40000 ALTER TABLE `luckdraw` ENABLE KEYS */;
 
 
 --
@@ -238,9 +282,11 @@ CREATE TABLE `publish` (
 
 /*!40000 ALTER TABLE `publish` DISABLE KEYS */;
 INSERT INTO `publish` (`sid`,`id`,`startTIme`,`endTime`,`deptName`) VALUES 
- ('06da8629409f4ed7a8013db7aba5570f','1234563','2020-12-19 10:40:22','2020-12-19 10:41:22','所有部门'),
- ('6d9b01b640dd4bcea6700ac8cf27a828','admin','2020-12-19 06:00:20','2020-12-19 06:01:20','所有部门'),
- ('a3d422caf5b64312bc3621603bf89bec','admin','2020-12-19 05:57:34','2020-12-19 05:58:34','001');
+ ('22b2dc1077874435aae0cf83f4632c8b','admin','2020-12-21 13:17:09','2020-12-21 13:18:09','所有部门'),
+ ('365fcd6e7ca943fe86a0ac7c1307198b','admin','2020-12-21 14:33:29','2020-12-21 14:36:29','Java开发部'),
+ ('4cbfa59989b74e16b071bfae5b75c28a','admin','2020-12-21 14:43:55','2020-12-21 14:46:55','Java开发部'),
+ ('880acb7c7faa456b9188ecce1f17a8ed','admin','2020-12-21 14:27:51','2020-12-21 14:30:51','所有部门'),
+ ('ad61119140314a9fb11882320d960401','admin','2020-12-21 14:25:44','2020-12-21 14:26:44','所有部门');
 /*!40000 ALTER TABLE `publish` ENABLE KEYS */;
 
 
@@ -256,7 +302,7 @@ CREATE TABLE `sign` (
   `endTime` datetime NOT NULL COMMENT '结束时间',
   `flag` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否签到',
   PRIMARY KEY (`num`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sign`
@@ -264,23 +310,33 @@ CREATE TABLE `sign` (
 
 /*!40000 ALTER TABLE `sign` DISABLE KEYS */;
 INSERT INTO `sign` (`num`,`sid`,`empid`,`endTime`,`flag`) VALUES 
- (2,'a3d422caf5b64312bc3621603bf89bec',3,'2020-12-19 05:58:34',0),
- (3,'a3d422caf5b64312bc3621603bf89bec',4,'2020-12-19 05:58:34',0),
- (4,'a3d422caf5b64312bc3621603bf89bec',5,'2020-12-19 05:58:34',0),
- (5,'6d9b01b640dd4bcea6700ac8cf27a828',1,'2020-12-19 06:01:20',0),
- (6,'6d9b01b640dd4bcea6700ac8cf27a828',2,'2020-12-19 06:01:20',0),
- (7,'6d9b01b640dd4bcea6700ac8cf27a828',3,'2020-12-19 06:01:20',0),
- (8,'6d9b01b640dd4bcea6700ac8cf27a828',4,'2020-12-19 06:01:20',0),
- (9,'6d9b01b640dd4bcea6700ac8cf27a828',5,'2020-12-19 06:01:20',0),
- (10,'6d9b01b640dd4bcea6700ac8cf27a828',6,'2020-12-19 06:01:20',0),
- (11,'6d9b01b640dd4bcea6700ac8cf27a828',7,'2020-12-19 06:01:20',0),
- (12,'06da8629409f4ed7a8013db7aba5570f',1,'2020-12-19 10:41:22',0),
- (13,'06da8629409f4ed7a8013db7aba5570f',2,'2020-12-19 10:41:22',0),
- (14,'06da8629409f4ed7a8013db7aba5570f',3,'2020-12-19 10:41:22',1),
- (15,'06da8629409f4ed7a8013db7aba5570f',4,'2020-12-19 10:41:22',0),
- (16,'06da8629409f4ed7a8013db7aba5570f',5,'2020-12-19 10:41:22',0),
- (17,'06da8629409f4ed7a8013db7aba5570f',6,'2020-12-19 10:41:22',0),
- (18,'06da8629409f4ed7a8013db7aba5570f',7,'2020-12-19 10:41:22',0);
+ (22,'22b2dc1077874435aae0cf83f4632c8b',1,'2020-12-21 13:18:09',0),
+ (23,'22b2dc1077874435aae0cf83f4632c8b',2,'2020-12-21 13:18:09',0),
+ (24,'22b2dc1077874435aae0cf83f4632c8b',3,'2020-12-21 13:18:09',0),
+ (25,'22b2dc1077874435aae0cf83f4632c8b',4,'2020-12-21 13:18:09',0),
+ (26,'22b2dc1077874435aae0cf83f4632c8b',5,'2020-12-21 13:18:09',0),
+ (27,'22b2dc1077874435aae0cf83f4632c8b',6,'2020-12-21 13:18:09',0),
+ (28,'22b2dc1077874435aae0cf83f4632c8b',7,'2020-12-21 13:18:09',0),
+ (29,'ad61119140314a9fb11882320d960401',1,'2020-12-21 14:26:44',0),
+ (30,'ad61119140314a9fb11882320d960401',2,'2020-12-21 14:26:44',0),
+ (31,'ad61119140314a9fb11882320d960401',3,'2020-12-21 14:26:44',0),
+ (32,'ad61119140314a9fb11882320d960401',4,'2020-12-21 14:26:44',0),
+ (33,'ad61119140314a9fb11882320d960401',5,'2020-12-21 14:26:44',0),
+ (34,'ad61119140314a9fb11882320d960401',6,'2020-12-21 14:26:44',0),
+ (35,'ad61119140314a9fb11882320d960401',7,'2020-12-21 14:26:44',0),
+ (36,'880acb7c7faa456b9188ecce1f17a8ed',1,'2020-12-21 14:30:51',0),
+ (37,'880acb7c7faa456b9188ecce1f17a8ed',2,'2020-12-21 14:30:51',0),
+ (38,'880acb7c7faa456b9188ecce1f17a8ed',3,'2020-12-21 14:30:51',0),
+ (39,'880acb7c7faa456b9188ecce1f17a8ed',4,'2020-12-21 14:30:51',0),
+ (40,'880acb7c7faa456b9188ecce1f17a8ed',5,'2020-12-21 14:30:51',0),
+ (41,'880acb7c7faa456b9188ecce1f17a8ed',6,'2020-12-21 14:30:51',0),
+ (42,'880acb7c7faa456b9188ecce1f17a8ed',7,'2020-12-21 14:30:51',0),
+ (43,'365fcd6e7ca943fe86a0ac7c1307198b',3,'2020-12-21 14:36:29',0),
+ (44,'365fcd6e7ca943fe86a0ac7c1307198b',4,'2020-12-21 14:36:29',0),
+ (45,'365fcd6e7ca943fe86a0ac7c1307198b',5,'2020-12-21 14:36:29',0),
+ (46,'4cbfa59989b74e16b071bfae5b75c28a',3,'2020-12-21 14:46:55',1),
+ (47,'4cbfa59989b74e16b071bfae5b75c28a',4,'2020-12-21 14:46:55',0),
+ (48,'4cbfa59989b74e16b071bfae5b75c28a',5,'2020-12-21 14:46:55',0);
 /*!40000 ALTER TABLE `sign` ENABLE KEYS */;
 
 
