@@ -26,11 +26,13 @@ public class myRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
        UsernamePasswordToken usernamePasswordToken= (UsernamePasswordToken)  authenticationToken;
-       System.out.println("doGetAuthenticationInfo");
         String id = usernamePasswordToken.getUsername();
         admin admin = adminService.queryOneAdmin(id);
         String realName = this.getName();
+
+
         SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(admin.getId(),admin.getPassword(),realName);
+
         return info;
     }
 

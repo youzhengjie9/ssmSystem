@@ -1,7 +1,15 @@
 # ssm.shiro
 
 #### 介绍
-大二上学期的项目2,采用ssm+shiro+Redis整合的人力管理系统
+大二上学期的项目,采用ssm+shiro+Redis整合的人力管理系统
+
+#### 功能
+1.  管理员操作
+2.  员工操作
+3.  部门操作
+4.  签到功能
+5.  日志操作
+6.  抽奖功能
  
 #### 开发环境
 1. Windows10
@@ -17,7 +25,9 @@
 6.  Mysql
 7.  bootstrap
 8.  pageHelper分页插件
-
+9.  thumbnail
+10.  log4j 
+ 
 #### 使用说明
 
 1.  开启Mysql和Redis服务

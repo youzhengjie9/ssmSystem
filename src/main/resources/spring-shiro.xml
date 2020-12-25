@@ -20,9 +20,15 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="Realm"/>
     </bean>
+    <bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+<!--        指定加密算法的名字-->
+        <property name="hashAlgorithmName" value="MD5"/>
+<!--&lt;!&ndash;        指定经过的加密次数&ndash;&gt;-->
+<!--        <property name="hashIterations" value="1024"/>-->
+    </bean>
 
     <bean id="Realm" class="com.Realm.myRealm">
-
+        <property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
     </bean>
 
 

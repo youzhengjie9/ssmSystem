@@ -28,7 +28,7 @@ USE ssmrl;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` varchar(10) NOT NULL,
-  `password` varchar(15) NOT NULL DEFAULT '123456',
+  `password` varchar(45) NOT NULL DEFAULT '123456',
   `authoid` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '权限等级',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

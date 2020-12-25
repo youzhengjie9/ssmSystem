@@ -49,6 +49,15 @@
 
     }
 
+    /*#count{*/
+    /*    width: 300px;*/
+    /*    height: 60px;*/
+    /*    float: right;*/
+    /*}*/
+
+
+
+
 </style>
 
 <head>
@@ -210,10 +219,20 @@
 <!-- <div class="x-slide_left"></div> -->
 <!-- 左侧菜单结束 -->
 
+<%--<div id="count">--%>
+<%--    <h3> 当前网站被访问次数：--%>
+<%--    <c:if test="${count==null}">--%>
+<%--        0次--%>
+<%--    </c:if>--%>
+<%--    <c:if test="${count!=null}">--%>
+<%--        ${count}次--%>
+<%--    </c:if>--%>
+<%--    </h3>--%>
+<%--</div>--%>
 
 
 
-<div class="page-content-bg"></div>
+<div class="page-content-bg">  </div>
 <style id="theme_style"></style>
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->

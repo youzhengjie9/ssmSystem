@@ -2,6 +2,7 @@ package com.controller;
 
 import com.jedis.myJedis;
 import com.pojo.*;
+import com.security.MD5Encode;
 import com.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -80,7 +81,11 @@ public class empController {
     @RequestMapping(path = "/AddEmp")
     public String AddEmp(HttpServletRequest request, @Value("添加员工、开通员工帐号") String type,emp emp){
         empService.addEmp(new emp(emp.getEmpid(),emp.getEmpName(),emp.getDept(),new admin("123456"+emp.getEmpid(),"123456",new authority(1,"普通用户"))));
-        adminService.addAdmin(new admin("123456"+emp.getEmpid(),"123456",new authority(1,"普通用户"))); //添加员工之后，为员工开一个账户
+
+        //加密123456
+        String password = MD5Encode.md5encode("123456");
+
+        adminService.addAdmin(new admin("123456"+emp.getEmpid(),password,new authority(1,"普通用户"))); //添加员工之后，为员工开一个账户
         //日志
         addlog(request,type);
 

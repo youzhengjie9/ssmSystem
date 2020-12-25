@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,8 +66,23 @@ public class adminController {
     }
 
     @RequestMapping(path = "/toList")
-    public String toList(Model model){
+    public String toList(HttpServletRequest request,Model model){
         Subject subject = SecurityUtils.getSubject();
+
+//        //利用servletcontext的生命周期是开启服务到关闭服务器，我们可以实现计数器
+//        ServletContext servletContext = request.getSession().getServletContext();
+//        if(servletContext.getAttribute("count")==null){
+//            int i=1;
+//            servletContext.setAttribute("count",i);
+//        }else{
+//            int count = (int) servletContext.getAttribute("count");
+//            count++;
+//            servletContext.setAttribute("count",count);
+//        }
+//        model.addAttribute("count",servletContext.getAttribute("count"));
+
+
+
         model.addAttribute("user",subject.getPrincipal());
         model.addAttribute("depts",deptService.queryAllDept());
         return "list";

@@ -64,4 +64,11 @@
     </select>
 
 
+    <select id="queryEmpNameByEmpid" resultType="java.lang.String">
+        select empName from emp where empid=#{empid};
+    </select>
+
+    <select id="queryDeptidByEmpid" resultType="java.lang.String">
+        select deptid from emp where empid=#{empid};
+    </select>
 </mapper>
