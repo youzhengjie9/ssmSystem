@@ -10,10 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 @Controller
 public class uploadController {
@@ -65,6 +62,37 @@ public class uploadController {
 
 
         return "list";
+    }
+
+
+
+    //上传文件
+    @RequestMapping(path = "/uploadFile")
+    public String uploadFile(HttpServletRequest request,MultipartFile multipartFile) throws IOException {
+
+        String dirpath = request.getSession().getServletContext().getRealPath("upload");
+        File dir = new File(dirpath);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        String filename = multipartFile.getOriginalFilename();
+        InputStream inputStream = multipartFile.getInputStream();
+        byte bytes[]=new byte[inputStream.available()];
+        inputStream.read(bytes);
+        String filepath=dirpath+"\\"+filename;
+        BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(filepath));
+
+        bufferedOutputStream.write(bytes);
+
+        bufferedOutputStream.flush();
+
+
+        bufferedOutputStream.close();
+        inputStream.close();
+
+
+
+        return "redirect:/todownload";
     }
 
 

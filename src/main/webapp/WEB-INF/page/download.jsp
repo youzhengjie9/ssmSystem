@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: youzhengjie666
-  Date: 2020/12/13
-  Time: 16:32
+  Date: 2020/12/26
+  Time: 13:24
   To change this template use File | Settings | File Templates.
 --%>
 <html class="x-admin-sm">
@@ -23,13 +23,15 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/xadmin.css">
-<!-- <link rel="stylesheet" href="./css/theme5.css"> -->
 <script src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
+
 <head>
-    <title>empList</title>
+    <title>adminList</title>
 </head>
-<body>
+
+<body >
+
 <style>
     ul li a{
         text-decoration: none;
@@ -39,7 +41,7 @@
         margin-top: 20px;
     }
     #tb{
-        width: 1600px;
+        width: 1500px;
         height: 420px;
         float: left;
         margin-left: 200px;
@@ -57,7 +59,25 @@
     }
 
 
+    #pageHelpers{
+        width: 450px;
+        height: 50px;
+        float: right;
+    }
+
+    #p1{
+        color: cornflowerblue;
+    }
+    #p2{
+        color: cornflowerblue;
+    }
+    #p3{
+        color: cornflowerblue;
+    }
+
+
 </style>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,20 +91,19 @@
             <a class="navbar-brand" href="${pageContext.request.contextPath}/toList">xx人力管理系统</a>
         </div>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
-                        <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="modal" data-target="#myModal3" >个人中心</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
 
 </nav>
-
 
 
 <%--  model--%>
@@ -118,6 +137,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
+
 
 
 <!-- 左侧菜单开始 -->
@@ -209,128 +230,112 @@
 <!-- <div class="x-slide_left"></div> -->
 <!-- 左侧菜单结束 -->
 
+<div class="page-content-bg"></div>
+<style id="theme_style"></style>
 
 
-<div id="tb">
-
-
-    <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增员工</h4>
-                </div>
-                <form method="post" action="${pageContext.request.contextPath}/AddEmp">
-                    <div class="modal-body">
-                        员工编号：<input type="text" name="empid"><br/>
-                        员工名字: &nbsp;<input type="text" name="empName"><br/>
-                        所在部门：<select name="dept.deptid">
-                        <c:forEach items="${depts}" var="dept">
-                            <option value="${dept.deptid}">${dept.deptName}</option>
-                        </c:forEach>
-
-                    </select>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="submit" class="btn btn-primary">确认添加</button>
-                    </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-
-
-
-    <!-- 按钮触发模态框 -->
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新增员工</button>
-
-
-    <table  class="table table-hover">
-        <tr>
-            <td>员工编号</td>
-            <td>员工名字</td>
-            <td>员工帐号</td>
-            <td>所在部门</td>
-            <td>操作</td>
-        </tr>
-        <c:forEach items="${emps}" var="emp">
-            <tr>
-                <td>${emp.empid}</td>
-                <td>${emp.empName}</td>
-                <td>${emp.admin.id}</td>
-                <td>${emp.dept.deptName}</td>
-                <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2" value="${emp.empName}" onclick="changeEmp(this,${emp.empid})">修改</button>
-                    &nbsp;&nbsp;
-<%--                    <a href="${pageContext.request.contextPath}/delEmp/${emp.empid}" id="del">删除</a>--%>
-                    <a href="#" class="btn btn-danger btn-sm" onclick="isdelEmp(this,${emp.empid})">删除</a>
-
-                </td>
-            </tr>
-
-        </c:forEach>
-
-
-
-
-
-    </table>
-</div>
-
-
-<!-- 修改emp模态框 -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+<!-- 上传资料模态框 -->
+<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel6" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel2">修改部门信息</h4>
+                <h4 class="modal-title" id="myModalLabel6">个人中心</h4>
             </div>
-            <form method="post" action="${pageContext.request.contextPath}/changeEmp">
-                <div class="modal-body">
-                    <input type="hidden" name="empid" id="ep" value=""><br/>
-                    员工名字：<input type="text" name="empName" id="en" value="" required><br/>
-                    部门名称：<select name="dept.deptid">
-                    <c:forEach items="${depts}" var="dept">
-                        <option value="${dept.deptid}">${dept.deptName}</option>
-                    </c:forEach>
+            <form method="post" action="${pageContext.request.contextPath}/uploadFile" enctype="multipart/form-data">
+            <div class="modal-body">
+                请选择您要上传的文件:<input type="file" name="multipartFile">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary">上传</button>
+            </div>
 
-                </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">修改</button>
-                </div>
-            </form>
+                </form>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 
 
-<script>
-    
-    function changeEmp(emp,empid) {
+<div id="tb">
 
-        document.getElementById('ep').value = empid;
-        document.getElementById('en').value = emp.value;
-    }
-    
-    function isdelEmp(emp,empid) {
-       var isdel = confirm("你是否要删除编号为："+empid+"的员工？");
-       if(isdel==true){
-           emp.href="${pageContext.request.contextPath}/delEmp/"+empid;
-           alert("成功删除编号为："+empid+"的员工")
-       }
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal6">上传资料</button>
 
-    }
+    <table class="table table-hover">
+        <tr>
+            <td>文件名</td>
+            <td>操作</td>
+        </tr>
+        <c:forEach items="${fileNames}" var="filename">
+            <tr>
+                <td>${filename}</td>
+                <td><a href="${pageContext.request.contextPath}/download?filename=${filename}" class="btn btn-primary btn-sm">下载</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+
+<%--    <div><h3>当前是第<span id="p1">${pageInfo.pageNum}</span>页,一共有<span id="p2">${pageInfo.pages}</span>页,<span id="p3">${pageInfo.total}</span>条记录</h3></div>--%>
 
 
 
+<%--    <div id="pageHelpers">--%>
+<%--        &lt;%&ndash;    分页&ndash;%&gt;--%>
+<%--        <nav aria-label="Page navigation">--%>
+<%--            <ul class="pagination">--%>
+<%--                <li>--%>
+<%--                    <c:if test="${pageInfo.hasPreviousPage}">--%>
+<%--                        <a href="${pageContext.request.contextPath}/adminList/${pageInfo.pageNum-1}" aria-label="Previous">--%>
+<%--                            <span aria-hidden="true">&laquo;</span>--%>
+<%--                        </a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${!pageInfo.hasPreviousPage}">--%>
+<%--                        <a href="#" aria-label="Previous" onclick="nopre()">--%>
+<%--                            <span aria-hidden="true">&laquo;</span>--%>
+<%--                        </a>--%>
+<%--                    </c:if>--%>
+<%--                </li>--%>
+<%--                &lt;%&ndash;              pageInfo.navigatepageNums : 其实就是pageHelper帮你分好了的导航栏数字&ndash;%&gt;--%>
+<%--                <c:forEach items="${pageInfo.navigatepageNums}" var="page">--%>
 
-</script>
+<%--                    <c:if test="${page!=pageInfo.pageNum}">--%>
+<%--                        <li><a href="${pageContext.request.contextPath}/adminList/${page}">${page}</a> </li>--%>
+<%--                    </c:if>--%>
+
+<%--                    &lt;%&ndash;                        当遍历导航栏页号时，页号等于我们当前点击的页号一致就高亮&ndash;%&gt;--%>
+<%--                    <c:if test="${page==pageInfo.pageNum}">--%>
+<%--                        <li class="active"><a href="${pageContext.request.contextPath}/adminList/${page}">${page}</a></li>--%>
+<%--                    </c:if>--%>
+
+<%--                </c:forEach>--%>
+
+
+<%--                <li>--%>
+
+<%--                    <c:if test="${pageInfo.hasNextPage}">--%>
+
+
+<%--                        <a href="${pageContext.request.contextPath}/adminList/${pageInfo.pageNum+1}" aria-label="Next">--%>
+<%--                            <span aria-hidden="true">&raquo;</span>--%>
+<%--                        </a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${!pageInfo.hasNextPage}">--%>
+<%--                        <a href="#" aria-label="Previous" onclick="noNext()">--%>
+<%--                            <span aria-hidden="true">&laquo;</span>--%>
+<%--                        </a>--%>
+<%--                    </c:if>--%>
+
+<%--                </li>--%>
+
+<%--            </ul>--%>
+<%--        </nav>--%>
+<%--    </div>--%>
+
+
+
+</div>
+
 
 
 </body>

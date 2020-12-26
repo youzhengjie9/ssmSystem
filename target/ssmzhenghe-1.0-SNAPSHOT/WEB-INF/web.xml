@@ -64,8 +64,11 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-
-
+<!--  配置错误时跳转页面-->
+   <error-page>
+     <error-code>404</error-code>
+     <location>/error_404</location>
+   </error-page>
 
 
 

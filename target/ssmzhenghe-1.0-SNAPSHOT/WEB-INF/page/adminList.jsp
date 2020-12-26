@@ -292,6 +292,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>员工抽奖</cite></a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/todownload">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>公司资料</cite></a>
+                    </li>
                 </ul>
 
 

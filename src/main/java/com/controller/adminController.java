@@ -1,6 +1,5 @@
 package com.controller;
 
-import com.dao.logMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pojo.admin;
@@ -16,9 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,6 +60,11 @@ public class adminController {
     @RequestMapping(path = "/toLogin")
     public String toLogin(){
         return "login";
+    }
+    @RequestMapping(path = "/error_404")
+    public String error_404(){
+
+        return "error_404";
     }
 
     @RequestMapping(path = "/toList")
