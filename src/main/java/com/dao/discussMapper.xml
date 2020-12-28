@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.discussMapper">
+
+    <insert id="addDiscuss" parameterType="com.pojo.discuss">
+            insert into discuss (discussid,discusscontent,discusstime,id,discussTitle) values (#{discussid},#{discusscontent},#{discusstime},#{id},#{discussTitle})
+    </insert>
+
+    <select id="queryAllDiscuss" resultType="com.pojo.discuss">
+        select * from discuss;
+    </select>
+
+
+</mapper>

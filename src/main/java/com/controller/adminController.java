@@ -57,6 +57,8 @@ public class adminController {
         this.adminService = adminService;
     }
 
+
+
     @RequestMapping(path = "/toLogin")
     public String toLogin(){
         return "login";

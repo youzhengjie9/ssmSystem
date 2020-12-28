@@ -63,7 +63,7 @@
                 /publish =roles[admin]
                 /toLuckDraw =roles[admin]
                 /luckdraw =roles[admin]
-
+                /uploadFile =roles[admin]
 
                 /** =authc
             </value>
