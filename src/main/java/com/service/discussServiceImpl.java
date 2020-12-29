@@ -24,4 +24,9 @@ public class discussServiceImpl implements discussService {
     public List<discuss> queryAllDiscuss() {
         return discussMapper.queryAllDiscuss();
     }
+
+    @Override
+    public discuss queryDiscussByID(String discussid) {
+        return discussMapper.queryDiscussByID(discussid);
+    }
 }

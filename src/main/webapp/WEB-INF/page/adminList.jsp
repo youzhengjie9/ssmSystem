@@ -30,31 +30,9 @@
 <head>
     <title>adminList</title>
 </head>
-<%--<script>--%>
-<%--    function x() {--%>
-<%--        alert("关闭浏览器")--%>
-<%--    }--%>
-<%--</script>--%>
 
-<%--<script>--%>
-
-<%--    document.getElementById('del').onclick=function () {--%>
-
-<%--        let b = confirm("您是否确定删除该管理员？");--%>
-<%--        if(b==true){--%>
-<%--            alert("删除成功！")--%>
-<%--        }else {--%>
-<%--            document.getElementById('del').href=${pageContext.request.contextPath}/adminList--%>
-<%--            alert("删除失败")--%>
-<%--        }--%>
-
-<%--    }--%>
-
-
-<%--</script>--%>
 <body >
-<%--<h3>管理员列表&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toList">返回主界面</a></h3>--%>
-<%--<br/>--%>
+
 <style>
     ul li a{
         text-decoration: none;
@@ -114,32 +92,6 @@
             <a class="navbar-brand" href="${pageContext.request.contextPath}/toList">xx人力管理系统</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-<%--        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--%>
-<%--            <ul class="nav navbar-nav">--%>
-<%--                <li class="active"><a href="${pageContext.request.contextPath}/adminList">管理员信息 <span class="sr-only">(current)</span></a></li>--%>
-<%--                <li><a href="${pageContext.request.contextPath}/showDept">部门信息</a></li>--%>
-<%--                <li><a href="${pageContext.request.contextPath}/toEmpList">员工信息</a></li>--%>
-<%--                <li><a href=" ${pageContext.request.contextPath}/toLogList">查看日志</a></li>--%>
-                <%--                <li class="dropdown">--%>
-                <%--                    <a href="${pageContext.request.contextPath}/toEmpList" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工信息 <span class="caret"></span></a>--%>
-                <%--                    <ul class="dropdown-menu">--%>
-                <%--                        <li><a href="#">Action</a></li>--%>
-                <%--                        <li><a href="#">Another action</a></li>--%>
-                <%--                        <li><a href="#">Something else here</a></li>--%>
-                <%--&lt;%&ndash;                        <li role="separator" class="divider"></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li><a href="#">Separated link</a></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li role="separator" class="divider"></li>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <li><a href="#">One more separated link</a></li>&ndash;%&gt;--%>
-                <%--                    </ul>--%>
-                <%--                </li>--%>
-<%--            </ul>--%>
-            <%--            <form class="navbar-form navbar-left">--%>
-            <%--                <div class="form-group">--%>
-            <%--                    <input type="text" class="form-control" placeholder="Search">--%>
-            <%--                </div>--%>
-            <%--                <button type="submit" class="btn btn-default">Submit</button>--%>
-            <%--            </form>--%>
             <ul class="nav navbar-nav navbar-right">
                 <li><img id="touxiang" src="${pageContext.request.contextPath}/imgServlet"></li>
                 <li class="dropdown">

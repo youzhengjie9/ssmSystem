@@ -155,6 +155,9 @@
         text-decoration: none;
     }
 
+    img{
+        border-radius: 50%;
+    }
 
 </style>
 
@@ -345,25 +348,31 @@
 <style id="theme_style"></style>
 
 
-<div id="tb">
+<ul id="tb">
 
     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">发布讨论</button>
+    <ul class="list-group">
     <c:forEach items="${discusses}" var="discuss">
-    <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="${pageContext.request.contextPath}/userImage/${discuss.id}"
-                 alt="${discuss.id}">
-        </a>
-        <div class="media-body">
-            <h3 class="media-heading"><a href="${pageContext.request.contextPath}/todiscussInfoList/${discuss.discussid}">${discuss.discussTitle}</a></h3>
-<%--            This is some sample text. This is some sample text.--%>
-<%--            This is some sample text. This is some sample text.--%>
-<%--            This is some sample text. This is some sample text.--%>
-<%--            This is some sample text. This is some sample text.--%>
-        </div>
-    </div>
-    </c:forEach>
+      <li class="list-group-item">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="${pageContext.request.contextPath}/userImage/${discuss.id}"
+                         alt="${discuss.id}">
+                </a>
+                <div class="media-body">
+                    <h3 class="media-heading"><a href="${pageContext.request.contextPath}/todiscussInfoList/${discuss.discussid}">${discuss.discussTitle}</a></h3>
+                        <%--            This is some sample text. This is some sample text.--%>
+                        <%--            This is some sample text. This is some sample text.--%>
+                        <%--            This is some sample text. This is some sample text.--%>
+                        <%--            This is some sample text. This is some sample text.--%>
+                </div>
+            </div>
 
+        </li>
+
+
+    </c:forEach>
+</ul>
 
 
 <%--    <div class="media">--%>

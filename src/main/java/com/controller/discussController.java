@@ -38,6 +38,8 @@ public class discussController {
     public String todiscuss(Model model){
         List<discuss> discusses = discussService.queryAllDiscuss();
         model.addAttribute("discusses",discusses);
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("user",subject.getPrincipal());
         return "discussList";
     }
     //发布讨论
@@ -74,14 +76,15 @@ public class discussController {
 
 
     @RequestMapping(path = "/todiscussInfoList/{discussID}")
-    public String todiscussInfoList(@PathVariable("discussID") String discussID){
+    public String todiscussInfoList(@PathVariable("discussID") String discussID,Model model){
         //如果discussID在数据库没找到，则跳转到404页面
+        discuss discuss = discussService.queryDiscussByID(discussID);
+        if(discuss==null){
+            return "error_404";
+        }else {
+            model.addAttribute("discuss",discuss);
 
-
-
-
-
-
+        }
 
         return "discussInfoList";
 

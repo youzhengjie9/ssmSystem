@@ -13,5 +13,8 @@
         select * from discuss;
     </select>
 
+    <select id="queryDiscussByID" resultType="com.pojo.discuss">
+        select * from discuss where discussid=#{discussid};
+    </select>
 
 </mapper>
