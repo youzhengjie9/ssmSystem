@@ -216,6 +216,27 @@
 
 
 
+            <%--         公司论坛   --%>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="公司论坛">&#xe726;</i>
+                    <cite>公司论坛</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/todiscuss">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>我的论坛</cite></a>
+                    </li>
+
+                </ul>
+
+            </li>
+            <%--    公司论坛结束--%>
+
+
+
+
 
         </ul>
 

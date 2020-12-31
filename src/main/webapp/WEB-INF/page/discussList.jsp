@@ -375,39 +375,6 @@
 </ul>
 
 
-<%--    <div class="media">--%>
-<%--        <a class="pull-left" href="#">--%>
-<%--            <img class="media-object" src="/bootstrap/images/64.jpg"--%>
-<%--                 alt="Media Object">--%>
-<%--        </a>--%>
-<%--        <div class="media-body">--%>
-<%--            <h4 class="media-heading">Media heading</h4>--%>
-<%--            This is some sample text. This is some sample text.--%>
-<%--            This is some sample text. This is some sample text.--%>
-<%--            This is some sample text. This is some sample text.--%>
-<%--            This is some sample text. This is some sample text.--%>
-
-
-<%--            <div class="media">--%>
-<%--                <a class="pull-left" href="#">--%>
-<%--                    <img class="media-object" src="/bootstrap/images/64.jpg"--%>
-<%--                         alt="Media Object">--%>
-<%--                </a>--%>
-<%--                <div class="media-body">--%>
-<%--                    <h4 class="media-heading">Media heading</h4>--%>
-<%--                    This is some sample text. This is some sample text.--%>
-<%--                    This is some sample text. This is some sample text.--%>
-<%--                    This is some sample text. This is some sample text.--%>
-<%--                    This is some sample text. This is some sample text.--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-
-
-
-
-
 
 
 <%--    <div><h3>当前是第<span id="p1">${pageInfo.pageNum}</span>页,一共有<span id="p2">${pageInfo.pages}</span>页,<span id="p3">${pageInfo.total}</span>条记录</h3></div>--%>

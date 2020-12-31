@@ -39,14 +39,15 @@ CREATE TABLE `admin` (
 
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id`,`password`,`authoid`) VALUES 
- ('1234561','123456',1),
- ('1234562','123456',1),
- ('1234563','123456',1),
- ('1234564','123456',1),
- ('1234565','123456',1),
- ('1234566','123456',1),
- ('1234567','123456',1),
- ('admin','123456',2);
+ ('1234561','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234562','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234563','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234564','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234565','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234566','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234567','e10adc3949ba59abbe56e057f20f883e',1),
+ ('1234568','e10adc3949ba59abbe56e057f20f883e',1),
+ ('admin','e10adc3949ba59abbe56e057f20f883e',2);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
@@ -73,6 +74,30 @@ INSERT INTO `authority` (`authoid`,`authoName`) VALUES
 
 
 --
+-- Definition of table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `commentID` varchar(45) NOT NULL,
+  `discussID` varchar(45) NOT NULL,
+  `id` varchar(10) NOT NULL,
+  `commentContent` text NOT NULL,
+  `commentTime` datetime NOT NULL,
+  PRIMARY KEY (`commentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评论表';
+
+--
+-- Dumping data for table `comment`
+--
+
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` (`commentID`,`discussID`,`id`,`commentContent`,`commentTime`) VALUES 
+ ('100','5e8d74f5fbab43eab3cdb784529106c6','1234562','wwwwwww','2001-07-12 00:00:00');
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+
+
+--
 -- Definition of table `dept`
 --
 
@@ -93,6 +118,33 @@ INSERT INTO `dept` (`deptid`,`deptName`) VALUES
  ('002','算法部'),
  ('003','运营部');
 /*!40000 ALTER TABLE `dept` ENABLE KEYS */;
+
+
+--
+-- Definition of table `discuss`
+--
+
+DROP TABLE IF EXISTS `discuss`;
+CREATE TABLE `discuss` (
+  `discussid` varchar(45) NOT NULL,
+  `discusscontent` text NOT NULL,
+  `discusstime` datetime NOT NULL,
+  `id` varchar(10) NOT NULL,
+  `discussTitle` text,
+  PRIMARY KEY (`discussid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='讨论表';
+
+--
+-- Dumping data for table `discuss`
+--
+
+/*!40000 ALTER TABLE `discuss` DISABLE KEYS */;
+INSERT INTO `discuss` (`discussid`,`discusscontent`,`discusstime`,`id`,`discussTitle`) VALUES 
+ ('5e8d74f5fbab43eab3cdb784529106c6','我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事我今天。。。今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n今天做的一件事今天做的一件事今天做的一件事\r\n。。。\r\n今天做的一件事今天做的一件事','2020-12-28 22:09:57','admin','今天做的一件事'),
+ ('6a4e9315a9f742a1973cc97975b35558','3333','2020-12-28 22:31:46','1234561','我今天在打酱油'),
+ ('b299a835c5cf4784aa6cc6d794aaca3a','wpoopop\r\nssdskod\r\nsslapslapc','2020-12-29 22:47:46','admin','ppp'),
+ ('b4e8edde97564ac2921d1cc7994e7023','9991000','2020-12-29 12:25:27','admin','999');
+/*!40000 ALTER TABLE `discuss` ENABLE KEYS */;
 
 
 --
@@ -121,7 +173,8 @@ INSERT INTO `emp` (`empid`,`empName`,`deptid`,`id`) VALUES
  (4,'AA','001','1234564'),
  (5,'bb','001','1234565'),
  (6,'cc','002','1234566'),
- (7,'9dd','003','1234567');
+ (7,'9dd','003','1234567'),
+ (8,'9dd','001','1234568');
 /*!40000 ALTER TABLE `emp` ENABLE KEYS */;
 
 
@@ -176,6 +229,7 @@ INSERT INTO `logger` (`logid`,`id`,`type`,`operation`,`date`,`remark`) VALUES
  ('4d7413eeafac4000b48f731ef07b13a2','admin','发布签到','/publish','2020-12-21 13:17:09',''),
  ('5889e7d4a31247909bf885e025a1036f','admin','删除帐号、员工信息','/delAdmin/123','2020-12-18 18:10:44',''),
  ('5c1f5aec9eaa477eb745ebe9bb1540a0','admin','修改部门','/changeDept','2020-12-16 18:13:44',''),
+ ('601d77e942cf40308388282bf3cef976','admin','添加员工、开通员工帐号','/AddEmp','2020-12-25 18:19:41',''),
  ('602666fca9ed4c57a876b0ade34c746a','admin','删除部门','/delDept/222','2020-12-16 19:35:40',''),
  ('6058980216ed4324a15959238bb4f0f9','admin','添加管理员','/AddAdmin','2020-12-15 22:35:34',''),
  ('6303c1e4bbe941e6836aaf357096933f','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:55:03',''),
@@ -207,6 +261,7 @@ INSERT INTO `logger` (`logid`,`id`,`type`,`operation`,`date`,`remark`) VALUES
  ('b6fc7c7a1ccd43af976b02de109affce','admin','删除员工、员工帐号','/delEmp/12','2020-12-18 18:09:58',''),
  ('b8aa2314ce3a4d02ab25d3db3178a7c8','admin','发布签到','/publish','2020-12-21 14:27:51',''),
  ('b8e100492d1b4452a0ce1882f1387d1f','admin','删除管理员','/delAdmin/922','2020-12-16 19:49:27',''),
+ ('c1acf2f3a5a049a28556009e62d6bcde','admin','添加员工、开通员工帐号','/AddEmp','2020-12-25 18:15:30',''),
  ('c272a96badc04b69bff0a8b67e121974','admin','发布签到','/publish','2020-12-21 14:43:55',''),
  ('c4514d8bd2d04359b38c2fe3afc311fe','admin','添加管理员','/AddAdmin','2020-12-16 19:49:13',''),
  ('c546abc6a976413786da15bac972d1e4','admin','修改管理员信息','/changgeAdmin','2020-12-15 22:48:58',''),
@@ -288,6 +343,30 @@ INSERT INTO `publish` (`sid`,`id`,`startTIme`,`endTime`,`deptName`) VALUES
  ('880acb7c7faa456b9188ecce1f17a8ed','admin','2020-12-21 14:27:51','2020-12-21 14:30:51','所有部门'),
  ('ad61119140314a9fb11882320d960401','admin','2020-12-21 14:25:44','2020-12-21 14:26:44','所有部门');
 /*!40000 ALTER TABLE `publish` ENABLE KEYS */;
+
+
+--
+-- Definition of table `reply`
+--
+
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply` (
+  `replyid` varchar(45) NOT NULL,
+  `commentID` varchar(45) NOT NULL,
+  `replyContent` text NOT NULL,
+  `replyTime` datetime NOT NULL,
+  `rid` varchar(10) NOT NULL,
+  PRIMARY KEY (`replyid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='回复表';
+
+--
+-- Dumping data for table `reply`
+--
+
+/*!40000 ALTER TABLE `reply` DISABLE KEYS */;
+INSERT INTO `reply` (`replyid`,`commentID`,`replyContent`,`replyTime`,`rid`) VALUES
+ ('999','100','回复','2001-02-02 00:00:00','1234563');
+/*!40000 ALTER TABLE `reply` ENABLE KEYS */;
 
 
 --

@@ -7,20 +7,20 @@ public class reply implements Serializable {
      * 回复表
      */
     private String replyid; //回复id uuid生成
-    private String discussID; //评论id
+    private String commentID; //评论id
     private String replyContent; //回复内容
     private String replyTime; //回复日期
-    private String id; //回复者id
+    private String rid; //回复者id
 
     public reply() {
     }
 
-    public reply(String replyid, String discussID, String replyContent, String replyTime, String id) {
+    public reply(String replyid, String commentID, String replyContent, String replyTime, String rid) {
         this.replyid = replyid;
-        this.discussID = discussID;
+        this.commentID = commentID;
         this.replyContent = replyContent;
         this.replyTime = replyTime;
-        this.id = id;
+        this.rid = rid;
     }
 
     public String getReplyid() {
@@ -31,12 +31,12 @@ public class reply implements Serializable {
         this.replyid = replyid;
     }
 
-    public String getDiscussID() {
-        return discussID;
+    public String getCommentID() {
+        return commentID;
     }
 
-    public void setDiscussID(String discussID) {
-        this.discussID = discussID;
+    public void setCommentID(String commentID) {
+        this.commentID = commentID;
     }
 
     public String getReplyContent() {
@@ -56,10 +56,21 @@ public class reply implements Serializable {
     }
 
     public String getId() {
-        return id;
+        return rid;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.rid = id;
+    }
+
+    @Override
+    public String toString() {
+        return "reply{" +
+                "replyid='" + replyid + '\'' +
+                ", commentID='" + commentID + '\'' +
+                ", replyContent='" + replyContent + '\'' +
+                ", replyTime='" + replyTime + '\'' +
+                ", rid='" + rid + '\'' +
+                '}';
     }
 }

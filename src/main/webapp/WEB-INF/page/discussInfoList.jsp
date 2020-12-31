@@ -80,7 +80,24 @@
     p{
         font-size: 16px;
     }
-
+    #ping{
+        font-size: 18px;
+    }
+    #ta2{
+        border:0;
+        border: 5px;
+        background-color:rgba(241,241,241,98);
+        width: 355px;
+        height: 100px;
+        padding: 10px;
+        resize: none;
+    }
+    #commentContent{
+        font-size: 16px;
+    }
+    #replyContent{
+        font-size: 16px;
+    }
 
 
 </style>
@@ -258,13 +275,82 @@
         <!-- Default panel contents -->
         <div id="title1" class="panel-heading">标题：${discuss.discussTitle}</div>
         <div class="panel-body">
-            <p>${discuss.discusscontent}</p>
+            <p>
+                ${discuss.discusscontent}
+                <br/>
+                    <br/>
+                文章发布于：${discuss.discusstime} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="ping"><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8" value="${discuss.discussid}"  onclick="setdiscussid(this)">评论</button></span>
+<%--                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8">修改</button>--%>
+            </p>
         </div>
 
+<%--        评论/回复--%>
+        <c:if test="${comments!=null&&comments.size()>0}">
+
+            <ul class="list-group">
+
+                    <c:forEach items="${comments}" var="comment">
+                        <li class="list-group-item">
+
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="${pageContext.request.contextPath}/userImage/${comment.id}"
+                                     alt="Media Object">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">${comment.id}</h4>
+                                  <span id="commentContent">${comment.commentContent}</span>
+
+<%--                                下面是回复--%>
+                                <c:if test="${comment.replys!=null&&comment.replys.size()>0}">
+
+                                    <c:forEach items="${comment.replys}" var="reply">
+
+                                        <div class="media">
+                                            <a class="pull-left" href="#">
+                                                <img class="media-object" src="${pageContext.request.contextPath}/userImage/${reply.id}"
+                                                     alt="Media Object">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">${reply.id}</h4>
+                                                   <span id="replyContent">${reply.replyContent}</span>
+                                            </div>
+                                        </div>
+
+                                    </c:forEach>
+
+
+                                </c:if>
 
 
 
 
+                            </div>
+
+                        </div>
+
+                        </li>
+
+                    </c:forEach>
+
+
+            </ul>
+
+
+
+
+        </c:if>
+
+
+
+
+
+
+
+
+
+<%--    评论结束--%>
 
 
 </div>
@@ -273,29 +359,21 @@
 
 
 <!-- 修改管理员模态框 -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+<div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel8" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel2">修改管理员</h4>
+                <h4 class="modal-title" id="myModalLabel8">发布评论</h4>
             </div>
-            <form method="post" action="${pageContext.request.contextPath}/changgeAdmin">
+            <form method="post" action="${pageContext.request.contextPath}/addComment">
                 <div class="modal-body">
-
-                    <input type="hidden" name="id" id="number"><br/>
-                    密码：<input type="password" name="password"><br/>
-                    权限：<select name="authority.authoid">
-                    <c:forEach items="${authorities}" var="authority">
-                        <option value="${authority.authoid}">${authority.authoName}</option>
-                    </c:forEach>
-                </select>
-                    <br/>
-
+                    <input type="hidden" name="discussID" id="discussid1"><br/>
+                    <textarea id="ta2" name="commentContent" placeholder="请输入评论内容"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">修改</button>
+                    <button type="submit" class="btn btn-primary">发送评论</button>
                 </div>
             </form>
         </div><!-- /.modal-content -->
@@ -305,4 +383,21 @@
 
 
 </body>
+
+
+<script>
+
+    function setdiscussid(ele) {
+
+        document.getElementById('discussid1').value=ele.value;
+
+    }
+
+
+
+
+</script>
+
+
+
 </html>

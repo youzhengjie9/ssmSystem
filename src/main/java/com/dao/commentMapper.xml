@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dao.commentMapper">
+<resultMap id="res" type="com.pojo.comment">
+    <result property="commentID" column="commentID"/>
+    <result property="discussID" column="discussID"/>
+    <result property="id" column="id"/>
+    <result property="commentContent" column="commentContent"/>
+    <result property="commentTime" column="commentTime"/>
+
+    <collection property="replys" ofType="com.pojo.reply">
+
+        <result property="replyid" column="replyid"/>
+        <result property="commentID" column="commentID"/>
+        <result property="replyContent" column="replyContent"/>
+        <result property="replyTime" column="replyTime"/>
+        <result property="rid" column="rid"/>
+
+    </collection>
+
+
+
+</resultMap>
+
+    <select id="queryCommentByDiscussIDHasReply" resultMap="res">
+            select comment.commentID,discussID,comment.id,commentContent,commentTime
+            ,replyid,replyContent,replyTime,reply.rid from comment,reply where comment.discussid=#{discussid}
+            and comment.commentID=reply.commentID
+            and comment.commentID=#{commentID}
+    </select>
+
+
+    <select id="queryCommentByDiscussNoReply" resultType="com.pojo.comment">
+        select comment.commentID,discussID,comment.id,commentContent,commentTime from comment
+        where comment.discussid=#{discussid} and comment.commentID=#{commentID}
+    </select>
+
+    <select id="queryAllCommentID" resultType="java.lang.String">
+        select commentID from comment where discussid=#{discussid};
+    </select>
+
+    <select id="queryIDByCommentID" resultType="java.lang.String">
+        select id from comment where commentid=#{commentid};
+    </select>
+
+
+
+    <insert id="addComment" parameterType="com.pojo.comment">
+        insert into comment  values (#{commentID},#{discussID},#{id},#{commentContent},#{commentTime});
+    </insert>
+
+
+</mapper>

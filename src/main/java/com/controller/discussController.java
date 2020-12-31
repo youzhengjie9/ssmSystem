@@ -1,7 +1,11 @@
 package com.controller;
 
+import com.pojo.comment;
 import com.pojo.discuss;
+import com.pojo.reply;
+import com.service.commentService;
 import com.service.discussService;
+import com.service.replyService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +32,19 @@ import java.util.UUID;
 public class discussController {
 
     private discussService discussService;
+    private commentService commentService;
+    private replyService replyService;
 
+
+    @Autowired
+    public void setReplyService(com.service.replyService replyService) {
+        this.replyService = replyService;
+    }
+
+    @Autowired
+    public void setCommentService(com.service.commentService commentService) {
+        this.commentService = commentService;
+    }
 
     @Autowired
     public void setDiscussService(com.service.discussService discussService) {
@@ -73,7 +90,9 @@ public class discussController {
     }
 
 
-
+    /**
+     * 论坛详情页
+     */
 
     @RequestMapping(path = "/todiscussInfoList/{discussID}")
     public String todiscussInfoList(@PathVariable("discussID") String discussID,Model model){
@@ -83,13 +102,38 @@ public class discussController {
             return "error_404";
         }else {
             model.addAttribute("discuss",discuss);
+            List<comment> comments=new LinkedList<>();
+            //1.获得所有commentid
+            List<String> commentIDs = commentService.queryAllCommentID(discussID);
+
+
+
+            for (String commentID : commentIDs) {
+
+                List<reply> reply = replyService.queryReplyByCommentID(commentID);
+
+
+                if(reply==null||reply.size()==0){
+                    comment comment = commentService.queryCommentByDiscussNoReply(discussID, commentID);
+
+
+                    comments.add(comment);
+                }else {
+                    comment comment = commentService.queryCommentByDiscussIDHasReply(discussID, commentID);
+
+
+                    comments.add(comment);
+                }
+            }
+            model.addAttribute("comments",comments);
+
+
 
         }
 
         return "discussInfoList";
 
     }
-
 
 
 

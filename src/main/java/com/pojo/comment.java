@@ -1,6 +1,7 @@
 package com.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class comment implements Serializable {
     /**
@@ -11,16 +12,28 @@ public class comment implements Serializable {
     private String id;  //发布评论者id
     private String commentContent; //评论内容
     private String commentTime; //评论日期
+    private List<reply> replys; //回复
 
     public comment() {
     }
 
+//    用于传输comment对象
     public comment(String commentID, String discussID, String id, String commentContent, String commentTime) {
         this.commentID = commentID;
         this.discussID = discussID;
         this.id = id;
         this.commentContent = commentContent;
         this.commentTime = commentTime;
+    }
+
+
+    public comment(String commentID, String discussID, String id, String commentContent, String commentTime, List<reply> replys) {
+        this.commentID = commentID;
+        this.discussID = discussID;
+        this.id = id;
+        this.commentContent = commentContent;
+        this.commentTime = commentTime;
+        this.replys = replys;
     }
 
     public String getCommentID() {
@@ -63,6 +76,14 @@ public class comment implements Serializable {
         this.commentTime = commentTime;
     }
 
+    public List<reply> getReplys() {
+        return replys;
+    }
+
+    public void setReplys(List<reply> replys) {
+        this.replys = replys;
+    }
+
     @Override
     public String toString() {
         return "comment{" +
@@ -71,6 +92,7 @@ public class comment implements Serializable {
                 ", id='" + id + '\'' +
                 ", commentContent='" + commentContent + '\'' +
                 ", commentTime='" + commentTime + '\'' +
+                ", replys=" + replys +
                 '}';
     }
 }

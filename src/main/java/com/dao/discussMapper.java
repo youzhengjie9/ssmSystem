@@ -16,4 +16,6 @@ public interface discussMapper {
 
     discuss queryDiscussByID(@Param("discussid") String discussid);
 
+
+
 }
