@@ -19,7 +19,7 @@
         <result property="replyContent" column="replyContent"/>
         <result property="replyTime" column="replyTime"/>
         <result property="rid" column="rid"/>
-
+        <result property="pid" column="pid"/>
     </collection>
 
 
@@ -28,7 +28,7 @@
 
     <select id="queryCommentByDiscussIDHasReply" resultMap="res">
             select comment.commentID,discussID,comment.id,commentContent,commentTime
-            ,replyid,replyContent,replyTime,reply.rid from comment,reply where comment.discussid=#{discussid}
+            ,replyid,replyContent,replyTime,reply.rid,pid from comment,reply where comment.discussid=#{discussid}
             and comment.commentID=reply.commentID
             and comment.commentID=#{commentID}
     </select>

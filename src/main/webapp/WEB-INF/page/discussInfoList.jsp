@@ -8,6 +8,7 @@
 <html class="x-admin-sm">
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -93,10 +94,24 @@
         resize: none;
     }
     #commentContent{
-        font-size: 16px;
+        font-size: 12px;
+    }
+    #commentTime{
+        font-size: 12px;
+        color: #808080;
+
+    }
+    #replyTime{
+        font-size: 12px;
+        color: #808080;
     }
     #replyContent{
         font-size: 16px;
+    }
+
+    .cid{
+        color: #CB945E;
+
     }
 
 
@@ -299,8 +314,8 @@
                                      alt="Media Object">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading">${comment.id}</h4>
-                                  <span id="commentContent">${comment.commentContent}</span>
+                                <h4  class="media-heading"><span ><a href="#"  class="cid">${comment.id}</a> </span> <span id="commentContent">：${comment.commentContent}</span></h4>
+                                  <span id="commentTime">${fn:substring(comment.commentTime, 0,19 )}</span>
 
 <%--                                下面是回复--%>
                                 <c:if test="${comment.replys!=null&&comment.replys.size()>0}">
@@ -313,8 +328,8 @@
                                                      alt="Media Object">
                                             </a>
                                             <div class="media-body">
-                                                <h4 class="media-heading">${reply.id}</h4>
-                                                   <span id="replyContent">${reply.replyContent}</span>
+                                                <h4 class="media-heading"><span><a href="#"  class="cid">${reply.rid}</a></span>：回复<span><a href="#"  class="cid">@${reply.pid}</a></span><span id="replyContent">:${reply.replyContent}</span></h4>
+                                                <span id="replyTime">${fn:substring(reply.replyTime, 0,19 )}</span>
                                             </div>
                                         </div>
 
