@@ -11,7 +11,7 @@ public class reply implements Serializable {
     private String replyContent; //回复内容
     private String replyTime; //回复日期
     private String rid; //回复者id
-    private String pid; //评论者id   ==》相当于comment的id
+    private String pid; //评论者id   ==》
 
     public reply() {
     }

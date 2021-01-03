@@ -10,5 +10,6 @@ public interface replyService {
 
     List<reply> queryReplyByCommentID(String commentid);
 
-
+    //回复
+    void  addReply(reply reply);
 }

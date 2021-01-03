@@ -12,5 +12,8 @@
     </select>
 
 
+    <insert id="addReply" parameterType="com.pojo.reply">
+        insert into reply  values (#{replyid},#{commentID},#{replyContent},#{replyTime},#{rid},#{pid});
+    </insert>
 
 </mapper>

@@ -21,4 +21,9 @@ public class replyServiceImpl implements replyService {
     public List<reply> queryReplyByCommentID(String commentid) {
         return replyMapper.queryReplyByCommentID(commentid);
     }
+
+    @Override
+    public void addReply(reply reply) {
+        replyMapper.addReply(reply);
+    }
 }

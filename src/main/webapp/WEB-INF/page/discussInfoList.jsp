@@ -27,7 +27,7 @@
 <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
 <script src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
-
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 <head>
     <title>adminList</title>
 </head>
@@ -85,6 +85,15 @@
         font-size: 18px;
     }
     #ta2{
+        border:0;
+        border: 5px;
+        background-color:rgba(241,241,241,98);
+        width: 355px;
+        height: 100px;
+        padding: 10px;
+        resize: none;
+    }
+    #ta3{
         border:0;
         border: 5px;
         background-color:rgba(241,241,241,98);
@@ -315,9 +324,11 @@
                             </a>
                             <div class="media-body">
                                 <h4  class="media-heading"><span ><a href="#"  class="cid">${comment.id}</a> </span> <span id="commentContent">：${comment.commentContent}</span></h4>
-                                  <span id="commentTime">${fn:substring(comment.commentTime, 0,19 )}</span>
-
+                                  <span id="commentTime">${fn:substring(comment.commentTime, 0,19 )}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span id="reply1"><a href="#" data-toggle="modal" data-target="#myModal9" onclick="setcomid('${comment.commentID}','${comment.id}')">回复</a> </span>
 <%--                                下面是回复--%>
+
+
                                 <c:if test="${comment.replys!=null&&comment.replys.size()>0}">
 
                                     <c:forEach items="${comment.replys}" var="reply">
@@ -328,7 +339,7 @@
                                                      alt="Media Object">
                                             </a>
                                             <div class="media-body">
-                                                <h4 class="media-heading"><span><a href="#"  class="cid">${reply.rid}</a></span>：回复<span><a href="#"  class="cid">@${reply.pid}</a></span><span id="replyContent">:${reply.replyContent}</span></h4>
+                                                <h4 class="media-heading"><span><a href="#"  class="cid">${reply.rid}</a></span>回复<span><a href="#"  class="cid">@${reply.pid}</a></span><span id="replyContent">：${reply.replyContent}</span></h4>
                                                 <span id="replyTime">${fn:substring(reply.replyTime, 0,19 )}</span>
                                             </div>
                                         </div>
@@ -370,10 +381,40 @@
 
 </div>
 
+<%--    回复--%>
+    <div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel9" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel9">回复评论</h4>
+                </div>
+                <form method="post" action="${pageContext.request.contextPath}/reply">
+                    <div class="modal-body">
+                        <input type="hidden" name="discussID" value="${discussID}">
+                        <input type="hidden" name="commentID" id="comid">
+                        <input type="hidden" name="pid" id="pid">
+                        <textarea id="ta3" name="replyContent" placeholder="请输入回复内容"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">回复</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 
 
 
-<!-- 修改管理员模态框 -->
+
+
+
+
+
+
+
+
 <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel8" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -400,7 +441,7 @@
 </body>
 
 
-<script>
+<script type="text/javascript">
 
     function setdiscussid(ele) {
 
@@ -408,6 +449,12 @@
 
     }
 
+
+    function setcomid(commid,pid) {
+
+        document.getElementById('comid').value=commid;
+        document.getElementById('pid').value=pid;
+    }
 
 
 
