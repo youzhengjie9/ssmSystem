@@ -93,7 +93,11 @@ CREATE TABLE `comment` (
 
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
 INSERT INTO `comment` (`commentID`,`discussID`,`id`,`commentContent`,`commentTime`) VALUES 
- ('100','5e8d74f5fbab43eab3cdb784529106c6','1234562','wwwwwww','2001-07-12 00:00:00');
+ ('100','5e8d74f5fbab43eab3cdb784529106c6','1234562','wwwwwww','2001-07-12 00:00:00'),
+ ('3a4750a6cb834f048f90963124e56e5b','5e8d74f5fbab43eab3cdb784529106c6','admin','1000','2020-12-30 23:19:40'),
+ ('755587cb2a1a4470a7267e9055a95c5c','5e8d74f5fbab43eab3cdb784529106c6','admin','000','2020-12-30 23:22:48'),
+ ('e1635c2200e84f37aaba02fdbf3b037b','5e8d74f5fbab43eab3cdb784529106c6','admin','20201230','2020-12-30 23:18:38'),
+ ('e5274b1b3ad64191957d75f4b5196d64','5e8d74f5fbab43eab3cdb784529106c6','admin','111','2021-01-03 15:53:37');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 
@@ -159,7 +163,7 @@ CREATE TABLE `emp` (
   `id` varchar(10) NOT NULL COMMENT '帐号',
   PRIMARY KEY (`empid`),
   UNIQUE KEY `Index_2` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91002 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `emp`
@@ -356,6 +360,7 @@ CREATE TABLE `reply` (
   `replyContent` text NOT NULL,
   `replyTime` datetime NOT NULL,
   `rid` varchar(10) NOT NULL,
+  `pid` varchar(10) NOT NULL COMMENT '评论者id',
   PRIMARY KEY (`replyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='回复表';
 
@@ -364,8 +369,12 @@ CREATE TABLE `reply` (
 --
 
 /*!40000 ALTER TABLE `reply` DISABLE KEYS */;
-INSERT INTO `reply` (`replyid`,`commentID`,`replyContent`,`replyTime`,`rid`) VALUES
- ('999','100','回复','2001-02-02 00:00:00','1234563');
+INSERT INTO `reply` (`replyid`,`commentID`,`replyContent`,`replyTime`,`rid`,`pid`) VALUES 
+ ('2dddda81cbeb4bbbbacbe90494f21b0e','100','999999','2021-01-03 22:51:52','admin','1234562'),
+ ('998','100','回复1','2001-02-02 00:00:00','1234565','1234562'),
+ ('999','755587cb2a1a4470a7267e9055a95c5c','回复','2001-02-02 00:00:00','1234563','admin'),
+ ('c50d572cc217408398af9ebd02f17228','3a4750a6cb834f048f90963124e56e5b','999','2021-01-03 22:51:18','admin','admin'),
+ ('df5465fbbddb4078b6b5e8faabd37386','755587cb2a1a4470a7267e9055a95c5c','99999','2021-01-03 22:51:37','admin','admin');
 /*!40000 ALTER TABLE `reply` ENABLE KEYS */;
 
 
